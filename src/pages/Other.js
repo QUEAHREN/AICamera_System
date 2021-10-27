@@ -21,7 +21,7 @@ class Preview extends React.Component{
             <Layout>
                 <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
                     <Menu.Item key="1"><NavLink to='/Preview'>预览</NavLink></Menu.Item>
                     <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
                     <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
@@ -38,7 +38,7 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    这里是视频预览页
+                    这里是其他
                     </Content>
                 </Layout>
                 </Layout>

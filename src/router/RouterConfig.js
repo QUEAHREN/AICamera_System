@@ -1,7 +1,11 @@
-import Home from '../pages/Home.js';
-import UsrLogin from '../pages/UsrLogin.js';
-import Preview from '../pages/Preview.js';
+import Config from '../pages/Config';
+import UsrLogin from '../pages/UsrLogin';
+import Preview from '../pages/Preview';
+import Other from '../pages/Other';
+import OnlineState from '../pages/configPages/OnlineState'
+
 import React from 'react';
+
 import {Router,Route,Switch,Redirect} from 'react-router-dom';
 import { createHashHistory } from "history";
 const history = createHashHistory();
@@ -12,11 +16,14 @@ class RouterConfig extends React.Component{
             <Router history={history}>
                 <Switch>
                     <Route path='/' exact render={()=>(
-                        <Redirect to='/Home'/>
+                        <Redirect to='/Preview'/>
                     )}/>
                     <Route path='/Login' component={UsrLogin}/>
-                    <Route path='/Home' component={Home}/>
+                    <Route exact path='/Config' component={Config}/>
+                    <Route exact path='/Config/OnlineState' component={OnlineState}/>
                     <Route path='/Preview' component={Preview}/>
+                    <Route path='/Other' component={Other}/>                   
+                    
                 </Switch>
             </Router>
         )

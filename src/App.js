@@ -4,7 +4,7 @@ import './assets/css/App.css';
 
 function App() {
   return (
-    <div></div>
+    <div>App组件</div>
     
   );
 }

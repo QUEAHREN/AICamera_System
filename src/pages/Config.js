@@ -3,18 +3,26 @@ import { NavLink } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import OnlineStateTest from './configPages/OnlineStateTest'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-class Home extends React.Component{
+class Config extends React.Component{
 
 
-    constructor(){
+    constructor(props){
 
-        super();
+        super(props);
 
+        this.state={
+            menuName:'系统',
+            submenuName:'当前状态信息'
+        }
     }
+
+    setName
+
 
     render(){
         return(
@@ -31,8 +39,8 @@ class Home extends React.Component{
                 <div className="logo" />
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
                     <Menu.Item key="1"><NavLink to='/Preview'>预览</NavLink></Menu.Item>
-                    <Menu.Item key="2"><NavLink to='/Home'>配置</NavLink></Menu.Item>
-                    <Menu.Item key="3"><NavLink to='/Home'>其他</NavLink></Menu.Item>
+                    <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
+                    <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
                 </Menu>
                 </Header>
                 <Layout>
@@ -44,7 +52,7 @@ class Home extends React.Component{
                     style={{ height: '100%', borderRight: 0 }}
                     >
                     <SubMenu key="sub1" icon={<UserOutlined />} title="系统">
-                        <Menu.Item key="1">当前状态信息</Menu.Item>
+                        <Menu.Item key="1"><NavLink to='/Config/OnlineState'>当前状态信息</NavLink></Menu.Item>
                         <Menu.Item key="2">设备相关信息</Menu.Item>
                         <Menu.Item key="3">上传固件</Menu.Item>
                         <Menu.Item key="4">重启软件</Menu.Item>
@@ -66,8 +74,9 @@ class Home extends React.Component{
                 <Layout style={{ padding: '0 24px 24px' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>配置</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                    <Breadcrumb.Item>{this.state.menuName}</Breadcrumb.Item>
+                    <Breadcrumb.Item>{this.state.submenuName}</Breadcrumb.Item>
+                    
                     </Breadcrumb>
                     <Content
                     className="site-layout-background"
@@ -77,7 +86,7 @@ class Home extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    组件更新
+                    <OnlineStateTest></OnlineStateTest>
                     </Content>
                 </Layout>
                 </Layout>
@@ -87,5 +96,5 @@ class Home extends React.Component{
     
 }
 
-export default Home;
+export default Config;
 
