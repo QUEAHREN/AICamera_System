@@ -4,6 +4,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import OnlineStateTest from './configPages/OnlineStateTest'
+import OLState from '../components/OLState'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;

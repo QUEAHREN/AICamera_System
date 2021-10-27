@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { NavLink } from 'react-router-dom'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import { Empty } from 'antd';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -26,6 +26,7 @@ class Preview extends React.Component{
                     <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
                     <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
                 </Menu>
+
                 </Header>
                 <Layout>
                 
@@ -38,7 +39,7 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    这里是其他
+                    <Empty></Empty>
                     </Content>
                 </Layout>
                 </Layout>

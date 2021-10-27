@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { NavLink } from 'react-router-dom'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { Empty} from 'antd';
 import 'antd/dist/antd.css';
 
 const { SubMenu } = Menu;
@@ -38,7 +38,7 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    这里是视频预览页
+                    <Empty></Empty>
                     </Content>
                 </Layout>
                 </Layout>
