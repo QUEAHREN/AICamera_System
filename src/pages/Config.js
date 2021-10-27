@@ -7,6 +7,8 @@ import OLState from '../components/OLState'
 import DeviceInfo from '../components/DeviceInfo'
 import FirmwareUpload from '../components/FirmwareUpload'
 import Reboot from '../components/Reboot'
+import LANConfig from '../components/LANConfig'
+import PortInfo from '../components/PortInfo'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -56,6 +58,21 @@ class Config extends React.Component{
                     flag:4
                 })
                 break; 
+            case 5:
+                this.setState({
+                    menuName:'网络',
+                    submenuName:'LAN设置',
+                    flag:5
+                })
+                break; 
+            case 6:
+                this.setState({
+                    menuName:'网络',
+                    submenuName:'网络端口',
+                    flag:6
+                })
+                break;         
+
         }
 
     }
@@ -70,6 +87,10 @@ class Config extends React.Component{
                 return (<FirmwareUpload/>);  
             case 4:
                 return (<Reboot/>);  
+            case 5:
+                return (<LANConfig/>);  
+            case 6:
+                return (<PortInfo/>);      
 
         }
 
