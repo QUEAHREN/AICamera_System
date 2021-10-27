@@ -18,12 +18,20 @@ class Config extends React.Component{
 
         this.state={
             menuName:'系统',
-            submenuName:'当前状态信息'
+            submenuName:'当前状态信息',
+            flag:1
         }
     }
 
     setName
 
+    clickSubMenu=(p)=>{
+        if (p==1)
+        this.setState({
+
+        })
+
+    }
 
     render(){
         return(
@@ -53,7 +61,7 @@ class Config extends React.Component{
                     style={{ height: '100%', borderRight: 0 }}
                     >
                     <SubMenu key="sub1" icon={<UserOutlined />} title="系统">
-                        <Menu.Item key="1"><NavLink to='/Config/OnlineState'>当前状态信息</NavLink></Menu.Item>
+                        <Menu.Item key="1" onClick=><NavLink to='/Config/OnlineState'>当前状态信息</NavLink></Menu.Item>
                         <Menu.Item key="2">设备相关信息</Menu.Item>
                         <Menu.Item key="3">上传固件</Menu.Item>
                         <Menu.Item key="4">重启软件</Menu.Item>
@@ -87,7 +95,9 @@ class Config extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    <OnlineStateTest></OnlineStateTest>
+                    {/* <OnlineStateTest></OnlineStateTest> */}
+                    <OLState></OLState>
+                    
                     </Content>
                 </Layout>
                 </Layout>
