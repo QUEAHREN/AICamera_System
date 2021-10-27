@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { NavLink } from 'react-router-dom'
 import { Empty} from 'antd';
+
 import 'antd/dist/antd.css';
 
 const { SubMenu } = Menu;
@@ -25,6 +26,7 @@ class Preview extends React.Component{
                     <Menu.Item key="1"><NavLink to='/Preview'>预览</NavLink></Menu.Item>
                     <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
                     <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
+
                 </Menu>
                 </Header>
                 <Layout>
@@ -39,6 +41,7 @@ class Preview extends React.Component{
                     }}
                     >
                     <Empty></Empty>
+
                     </Content>
                 </Layout>
                 </Layout>
