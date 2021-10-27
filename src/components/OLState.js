@@ -4,8 +4,6 @@ import 'antd/dist/antd.css';
 import { Descriptions, Badge } from 'antd';
 
 
-
-
 class OLState extends React.Component{
 
 
@@ -16,6 +14,7 @@ class OLState extends React.Component{
         this.state={
             systemStatus:'success'
         }
+        
     }
 
 

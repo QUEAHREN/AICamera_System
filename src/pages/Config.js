@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import OnlineStateTest from './configPages/OnlineStateTest'
 import OLState from '../components/OLState'
-
+import DeviceInfo from '../components/DeviceInfo'
+import FirmwareUpload from '../components/FirmwareUpload'
+import Reboot from '../components/Reboot'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -64,11 +65,11 @@ class Config extends React.Component{
             case 1:
                 return (<OLState/>);
             case 2:
-                return (<h1>hhh</h1>);  
+                return (<DeviceInfo/>);  
             case 3:
-                return (<h1>hh22h</h1>);  
+                return (<FirmwareUpload/>);  
             case 4:
-                return (<h1>hh33</h1>);  
+                return (<Reboot/>);  
 
         }
 
