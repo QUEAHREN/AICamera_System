@@ -26,23 +26,56 @@ class Config extends React.Component{
     setName
 
     clickSubMenu=(p)=>{
-        if (p==1)
-        this.setState({
+        switch(p){
+            case 1:
+                this.setState({
+                    menuName:'系统',
+                    submenuName:'当前状态信息',
+                    flag:1
+                })
+                break;
+            case 2:
+                this.setState({
+                    menuName:'系统',
+                    submenuName:'设备相关信息',
+                    flag:2
+                })
+                break;  
+            case 3:
+                this.setState({
+                    menuName:'系统',
+                    submenuName:'上传固件',
+                    flag:3
+                })
+                break; 
+            case 4:
+                this.setState({
+                    menuName:'系统',
+                    submenuName:'重启软件',
+                    flag:4
+                })
+                break; 
+        }
 
-        })
+    }
+
+    showComponent=()=>{
+        switch(this.state.flag){
+            case 1:
+                return (<OLState/>);
+            case 2:
+                return (<h1>hhh</h1>);  
+            case 3:
+                return (<h1>hh22h</h1>);  
+            case 4:
+                return (<h1>hh33</h1>);  
+
+        }
 
     }
 
     render(){
         return(
-            // <div>
-            //     <ul className="menu">
-            //         <li><NavLink to='/Home'>第一个页面</NavLink></li>
-            //         <li><NavLink to='/login'>第二个页面</NavLink></li>
-                    
-            //     </ul>
-
-            // </div>
             <Layout>
                 <Header className="header">
                 <div className="logo" />
@@ -61,19 +94,19 @@ class Config extends React.Component{
                     style={{ height: '100%', borderRight: 0 }}
                     >
                     <SubMenu key="sub1" icon={<UserOutlined />} title="系统">
-                        <Menu.Item key="1" onClick=><NavLink to='/Config/OnlineState'>当前状态信息</NavLink></Menu.Item>
-                        <Menu.Item key="2">设备相关信息</Menu.Item>
-                        <Menu.Item key="3">上传固件</Menu.Item>
-                        <Menu.Item key="4">重启软件</Menu.Item>
+                        <Menu.Item key="1" onClick={this.clickSubMenu.bind(this, 1)}>当前状态信息</Menu.Item>
+                        <Menu.Item key="2" onClick={this.clickSubMenu.bind(this, 2)}>设备相关信息</Menu.Item>
+                        <Menu.Item key="3" onClick={this.clickSubMenu.bind(this, 3)}>上传固件</Menu.Item>
+                        <Menu.Item key="4" onClick={this.clickSubMenu.bind(this, 4)}>重启软件</Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" icon={<LaptopOutlined />} title="网络">
-                        <Menu.Item key="5">LAN 设置</Menu.Item>
-                        <Menu.Item key="6">网络端口</Menu.Item>
-                        <Menu.Item key="7">GB28181 配置信息</Menu.Item>
+                        <Menu.Item key="5" onClick={this.clickSubMenu.bind(this, 5)}>LAN 设置</Menu.Item>
+                        <Menu.Item key="6" onClick={this.clickSubMenu.bind(this, 6)}>网络端口</Menu.Item>
+                        <Menu.Item key="7" onClick={this.clickSubMenu.bind(this, 7)}>GB28181 配置信息</Menu.Item>
 
                     </SubMenu>
                     <SubMenu key="sub3" icon={<NotificationOutlined />} title="媒体">
-                        <Menu.Item key="9">拍摄图片</Menu.Item>
+                        <Menu.Item key="8" onClick={this.clickSubMenu.bind(this, 8)}>拍摄图片</Menu.Item>
                         <Menu.Item key="10">option10</Menu.Item>
                         <Menu.Item key="11">option11</Menu.Item>
                         <Menu.Item key="12">option12</Menu.Item>
@@ -96,7 +129,11 @@ class Config extends React.Component{
                     }}
                     >
                     {/* <OnlineStateTest></OnlineStateTest> */}
-                    <OLState></OLState>
+
+                    {this.showComponent()}
+
+                     
+                    
                     
                     </Content>
                 </Layout>
