@@ -53,7 +53,6 @@ class UsrLogin extends React.Component{
 
     keyUp=(e)=>{
         if (e.keyCode == 13){
-
             this.login();
         }
     }
@@ -72,7 +71,7 @@ class UsrLogin extends React.Component{
                 Auth:response.data.Auth,
                 Token:response.data.Token,
             });
-            console.log(_this.state.Result )
+            console.log(_this.props )
             if (_this.state.Result == 0){
                 onLogin(_this.state.Token, _this.state.Auth, _this.state.UserName)
                 _this.props.history.push('/Preview')
