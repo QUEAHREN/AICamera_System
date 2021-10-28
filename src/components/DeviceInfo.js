@@ -34,7 +34,6 @@ class DeviceInfo extends React.Component{
         const _this = this;
         let token = getToken();
         
-        console.log(token)
         axios.defaults.withCredentials = true;
         axios.get('http://192.168.1.215:8080/System/Info/Device',{
             headers: {
@@ -53,7 +52,7 @@ class DeviceInfo extends React.Component{
                 SerialNumber: response.data.SerialNumber,
                 ManufactureDate: response.data.ManufactureDate,
             });
-            console.log(response.data); 
+
             if (_this.state.Result === 1){
                 alert(response.data.ErrMsg)
                 history.push(`/login`);
@@ -72,9 +71,8 @@ class DeviceInfo extends React.Component{
 
             <Layout>
                  <Descriptions
-                title="Responsive Descriptions"
                 bordered
-                column={{ xxl: 3, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
+                column={{ xxl: 2, xl: 2, lg: 1, md: 1, sm: 1, xs: 1 }}
                 >
                     <Descriptions.Item label="Hardware Version">{this.state.HardwareVersion}</Descriptions.Item>
                     <Descriptions.Item label="System Version">{this.state.HardwareVersion}</Descriptions.Item>

@@ -2,6 +2,10 @@ import React from 'react';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import { Descriptions } from 'antd';
+import axios from 'axios';
+import { createHashHistory } from "history";
+import {getToken} from '../model/mcookie'
+const history = createHashHistory();
 
 class LANConfig extends React.Component{
 
@@ -11,40 +15,66 @@ class LANConfig extends React.Component{
         super(props);
 
         this.state={
-
+            Result:'',
+            DHCP:'',
+            IPv4Address:'',
+            MAC:'',
+            IPv4Netmask:'',
+            IPv4Gateway:'',
+            DNS:'',
         }
         
     }
 
+    componentDidMount(){
 
+        // const _this = this;
+        // let token = getToken();
+        
+        // axios.defaults.withCredentials = true;
+        // axios.get('http://192.168.1.215:8080/Network/LAN/Config',{
+        //     headers: {
+        //         'Token': token
+        //     }
+        // })
+        // .then(function (response) {
+        //     _this.setState({
+        //         Result: response.data.Result,
+        //         DHCP: response.data.DHCP,
+        //         IPv4Address: response.data.IPv4Address,
+        //         MAC: response.data.MAC,
+        //         IPv4Netmask: response.data.IPv4Netmask,
+        //         IPv4Gateway: response.data.IPv4Gateway,
+        //         DNS: response.data.DNS,
+        //     });
+        //     console.log(response.data); 
+        //     if (_this.state.Result === 1){
+        //         alert(response.data.ErrMsg)
+        //         history.push(`/login`);
+        //     }
+        // })
+        // .catch(function (error) {
+        //     console.log(error); 
+            
+        // })
+
+    }
     render(){
         return(
 
             <Layout>
                 <Descriptions
-                title="Responsive Descriptions"
+                title="当前LAN参数"
                 bordered
-                column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
+                column={{ xxl: 3, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }}
                 >
-                <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
-                <Descriptions.Item label="Billing">Prepaid</Descriptions.Item>
-                <Descriptions.Item label="time">18:00:00</Descriptions.Item>
-                <Descriptions.Item label="Amount">$80.00</Descriptions.Item>
-                <Descriptions.Item label="Discount">$20.00</Descriptions.Item>
-                <Descriptions.Item label="Official">$60.00</Descriptions.Item>
-                <Descriptions.Item label="Config Info">
-                    Data disk type: MongoDB
-                    <br />
-                    Database version: 3.4
-                    <br />
-                    Package: dds.mongo.mid
-                    <br />
-                    Storage space: 10 GB
-                    <br />
-                    Replication factor: 3
-                    <br />
-                    Region: East China 1
-                </Descriptions.Item>
+                <Descriptions.Item label="DHCP">{this.state.DHCP}</Descriptions.Item>
+                <Descriptions.Item label="IPv4 Address">{this.state.IPv4Address}</Descriptions.Item>
+                <Descriptions.Item label="MAC">{this.state.MAC}</Descriptions.Item>
+                <Descriptions.Item label="IPv4 Netmask">{this.state.IPv4Netmask}</Descriptions.Item>
+                <Descriptions.Item label="IPv4 Gateway">{this.state.IPv4Gateway}</Descriptions.Item>
+                <Descriptions.Item label="DNS">{this.state.DNS}</Descriptions.Item>
+                
                 </Descriptions>
             </Layout>
         )

@@ -10,6 +10,7 @@ import Reboot from '../components/Reboot'
 import LANConfig from '../components/LANConfig'
 import PortInfo from '../components/PortInfo'
 import {checkToken,getUserName} from '../model/mcookie'
+import GB28181Config from '../components/GB28181Config';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -78,7 +79,14 @@ class Config extends React.Component{
                     submenuName:'网络端口',
                     flag:6
                 })
-                break;         
+                break;        
+            case 7:
+                this.setState({
+                    menuName:'网络',
+                    submenuName:'GB28181 配置信息',
+                    flag:7
+                })
+                break;       
 
         }
 
@@ -98,7 +106,8 @@ class Config extends React.Component{
                 return (<LANConfig/>);  
             case 6:
                 return (<PortInfo/>);      
-
+            case 7:
+                return (<GB28181Config/>);
         }
 
     }
