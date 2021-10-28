@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
+import axios from '_axios@0.24.0@axios';
+import '../assets/css/login.css'
 
 class UsrLogin extends React.Component{
 
@@ -8,51 +10,109 @@ class UsrLogin extends React.Component{
 
         super(props);
 
-    }
-    onFinish = () => {
+        this.state={
 
-      };
-    
-    onFinishFailed = () => {
+            UserName:"admin",
+            Password:"00000000",
+            Result:'1',
+            Auth:'0',
+            Token:''
+
+        }
+    }
+
+    componentDidMount(){
+
+        if (navigator.cookieEnabled == true){
+            console.log('已启用cookie');
+        }
+        else{
+            alert('请开启cookie');
+        }
+
+    }
+
+    handleUseNameChange=(e)=>{
         
-      };
+        this.setState({
+            UserName : e.target.value
+        })
+        console.log(this.state.UserName)
+    }
+
+    handleUsePswChange=(e)=>{
+
+        this.setState({
+            Password : e.target.value
+        })
+        console.log(this.state.Password)
+
+
+    }
+
+    keyUp=(e)=>{
+        if (e.keyCode == 13){
+
+            this.login();
+        }
+    }
+
+    login=()=>{
+        alert(this.state.UserName)
+        alert(this.state.Password)
+
+        const _this=this;   
+
+        axios.post('http://192.168.1.215:8080/User/Login',{
+            UserName:this.state.UserName,
+            Password:this.state.Password
+        })
+        .then(function (response) {
+            _this.setState({
+                Result:response.data.Result,
+                Auth:response.data.Auth,
+                Token:response.data.Token,
+            });
+            console.log(_this.state.Result )
+            if (_this.state.Result == 0){
+                _this.props.history.push('/Preview')
+            }
+            else{
+                alert("登录失败")
+            }
+            
+        })
+        .catch(function (error) {
+            console.log(error); 
+            alert("登录失败")
+        })
+
+
+    }
+
+
     render(){
         return(
             <div>
-                <Form
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                initialValues={{ remember: true }}
-                
-                autoComplete="off"
-                >
-                <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button>
-                </Form.Item>
-                </Form>
+                <div class="content">
+                <div class="login-box">
+                    <h1>SIGN IN</h1>
+                    <div class="output-frame">
+                        <label for="username">账号</label>
+                        <input type="text" id="username" autofocus  
+                        onChange={this.handleUseNameChange.bind(this)}
+                        onKeyUp={this.keyUp}/>
+                        
+                    </div>
+                    <div class="output-frame">
+                        <label for="password">密码</label>
+                        <input type="password" id="password"
+                        onChange={this.handleUsePswChange.bind(this)}
+                        onKeyUp={this.keyUp}/>
+                    </div>
+                    <button class="login-btn"  onClick={this.login}>登录</button>
+                </div>
+                </div>
             </div>
         )
     }
