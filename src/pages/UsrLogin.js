@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
 import axios from '_axios@0.24.0@axios';
 import '../assets/css/login.css'
+import {onLogin} from '../model/mcookie'
+
 
 class UsrLogin extends React.Component{
 
@@ -58,8 +59,6 @@ class UsrLogin extends React.Component{
     }
 
     login=()=>{
-        alert(this.state.UserName)
-        alert(this.state.Password)
 
         const _this=this;   
 
@@ -75,6 +74,7 @@ class UsrLogin extends React.Component{
             });
             console.log(_this.state.Result )
             if (_this.state.Result == 0){
+                onLogin(_this.state.Token, _this.state.Auth, _this.state.UserName)
                 _this.props.history.push('/Preview')
             }
             else{
