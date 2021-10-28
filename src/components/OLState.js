@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { Descriptions, Badge } from 'antd';
 import axios from 'axios';
 
+
 class OLState extends React.Component{
 
 
@@ -35,8 +36,8 @@ class OLState extends React.Component{
     
     componentDidMount(){
 
-        const _this=this;   
-
+        const _this=this;  
+        axios.defaults.withCredentials = true;
         axios.get('http://192.168.1.215:8080/System/Info/OnlineState')
         .then(function (response) {
             _this.setState({
