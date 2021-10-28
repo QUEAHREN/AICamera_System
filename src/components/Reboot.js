@@ -19,18 +19,20 @@ class Reboot extends React.Component{
         }
         
     }
+
     onReboot=()=>{
 
         const _this = this;
         let token = getToken();
-        
+
         axios.defaults.withCredentials = true;
-        axios.post('http://192.168.1.215:8080/System/Reboot',{
+        axios({
+            method: 'post',
+            url: 'http://192.168.1.215:8080/System/Reboot',
             headers: {
                 'Token': token
             }
-        })
-        .then(function (response) {
+          }).then(function (response) {
             
             console.log(response.data); 
             if (response.data.Result === 1){
@@ -49,16 +51,16 @@ class Reboot extends React.Component{
 
     onSoftReboot=()=>{
 
-        const _this = this;
-        let token = getToken();
-        
+        const token = getToken();
+
         axios.defaults.withCredentials = true;
-        axios.post('http://192.168.1.215:8080/System/SoftReboot',{
+        axios({
+            method: 'post',
+            url: 'http://192.168.1.215:8080/System/SoftReboot',
             headers: {
                 'Token': token
             }
-        })
-        .then(function (response) {
+          }).then(function (response) {
             
             console.log(response.data); 
             if (response.data.Result === 1){

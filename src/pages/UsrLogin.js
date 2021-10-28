@@ -38,7 +38,6 @@ class UsrLogin extends React.Component{
         this.setState({
             UserName : e.target.value
         })
-        console.log(this.state.UserName)
     }
 
     handleUsePswChange=(e)=>{
@@ -46,8 +45,6 @@ class UsrLogin extends React.Component{
         this.setState({
             Password : e.target.value
         })
-        console.log(this.state.Password)
-
 
     }
 
@@ -95,7 +92,7 @@ class UsrLogin extends React.Component{
             <div>
                 <div class="content">
                 <div class="login-box">
-                    <h1>SIGN IN</h1>
+                    <h1></h1>
                     <div class="output-frame">
                         <label for="username">账号</label>
                         <input type="text" id="username" autofocus  

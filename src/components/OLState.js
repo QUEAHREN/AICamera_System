@@ -42,9 +42,7 @@ class OLState extends React.Component{
         .then(function (response) {
             _this.setState({
                 isOline:response.data.Result,
-            });
-            console.log(_this.state.isOline); 
-            
+            }); 
         })
         .catch(function (error) {
             console.log(error); 
