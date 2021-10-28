@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import { Descriptions, Badge } from 'antd';
-
+import axios from 'axios';
 
 class OLState extends React.Component{
 
@@ -12,7 +12,9 @@ class OLState extends React.Component{
         super(props);
 
         this.state={
-            systemStatus:'success'
+            systemStatus:'success',
+            isOline:0,
+            systemStatusTxt:'运行中'
         }
         
     }
@@ -24,13 +26,48 @@ class OLState extends React.Component{
             <Layout>
                 <Descriptions title="" bordered>               
                     <Descriptions.Item label="设备状态" span={3}>
-                    <Badge status={this.state.systemStatus} text="运行中" />
+                    <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
                     </Descriptions.Item>                 
                 </Descriptions>
             </Layout>
         )
     }
     
+    componentDidMount(){
+
+        const _this=this;   
+
+        axios.get('http://192.168.1.215:8080/System/Info/OnlineState')
+        .then(function (response) {
+            _this.setState({
+                isOline:response.data.Result,
+            });
+            console.log(_this.state.isOline); 
+            
+        })
+        .catch(function (error) {
+            console.log(error); 
+            _this.setState({
+                isOline:1,   
+            })
+        })
+        console.log('jjjj'); 
+        if (_this.state.isOline == 0){
+            console.log('jjjj'); 
+            _this.setState({
+                systemStatus:'success',
+                systemStatusTxt:'运行中'
+            });
+        }
+        else
+            _this.setState({
+                systemStatus:'error',
+                systemStatusTxt:'错误'
+            });
+
+
+    }
+
 }
 
 export default OLState;
