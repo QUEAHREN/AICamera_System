@@ -22,7 +22,7 @@ class Reboot extends React.Component{
 
     onReboot=()=>{
 
-        const _this = this;
+        // const _this = this;
         let token = getToken();
 
         axios.defaults.withCredentials = true;

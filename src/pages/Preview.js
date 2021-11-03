@@ -1,13 +1,10 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom'
-import { Empty} from 'antd';
 import {checkToken,getUserName} from '../model/mcookie'
-
 import 'antd/dist/antd.css';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 class Preview extends React.Component{
 
@@ -51,8 +48,21 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    <Empty></Empty>
-
+                    {/* <VideoPlayer></VideoPlayer> */}
+                    <easy-player
+                        id="player"
+                        // video-url  undefined 容易白屏 设置为 ''
+                        video-url= ''
+                        fluent="true" // 流畅模式
+                        stretch // 是否拉伸
+                        muted="true" // 是否静音
+                        hide-big-play-button
+                        live="false"
+                        autoplay
+                        controls
+            
+                        // aspect="fullscreen" // 长比高的值过大 可能导致样式布局变化  不随外层div大小
+                        />
                     </Content>
                 </Layout>
                 </Layout>

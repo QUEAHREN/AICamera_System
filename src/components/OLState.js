@@ -51,7 +51,7 @@ class OLState extends React.Component{
             })
         })
 
-        if (_this.state.isOline == 0){
+        if (_this.state.isOline === 0){
             _this.setState({
                 systemStatus:'success',
                 systemStatusTxt:'运行中'
