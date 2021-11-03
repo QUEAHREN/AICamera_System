@@ -31,15 +31,11 @@ class Test extends React.Component{
         return(
            <div>
                <easy-player
-      video-url="rtsp://192.168.1.215:554/main_stream"
-      live="true"
-      stretch="true"
-    ></easy-player>
-               <easy-player
-      video-url="http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"
-      live="false"
-      stretch="true"
-    ></easy-player>
+                video-url="../assers/demo.mp4"
+                live="true"
+                stretch="true"
+                ></easy-player>
+               
            </div>
         )
     }

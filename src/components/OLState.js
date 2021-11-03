@@ -35,6 +35,10 @@ class OLState extends React.Component{
     }
     
     componentDidMount(){
+        
+        // let baseUrl = this.$config.baseUrl;
+        // console.log(baseUrl)
+
 
         const _this=this;  
         axios.defaults.withCredentials = true;
