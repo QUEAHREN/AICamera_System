@@ -2,6 +2,8 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom'
 import {checkToken,getUserName} from '../model/mcookie'
+import VideoPlayer from '../components/VideoPlayer';
+
 import 'antd/dist/antd.css';
 
 const { Header, Content } = Layout;
@@ -23,6 +25,8 @@ class Preview extends React.Component{
         this.setState({
             Username:getUserName()
         })
+
+        
     }
 
     render(){
@@ -48,24 +52,18 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    {/* <VideoPlayer></VideoPlayer> */}
-                    <easy-player
-                        id="player"
-                        // video-url  undefined 容易白屏 设置为 ''
-                        video-url= ''
-                        fluent="true" // 流畅模式
-                        stretch // 是否拉伸
-                        muted="true" // 是否静音
-                        hide-big-play-button
-                        live="false"
-                        autoplay
-                        controls
-            
-                        // aspect="fullscreen" // 长比高的值过大 可能导致样式布局变化  不随外层div大小
-                        />
+                    <VideoPlayer></VideoPlayer>
+                    
+                    <easy-player id="player" 
+                                live="true" 
+                                video-url = 'rtmp://202.69.69.180:443/webcast/bshdlive-pc'
+                                show-custom-button="true">
+                    </easy-player>
+                    
                     </Content>
                 </Layout>
                 </Layout>
+       
             </Layout>
         )
     }
