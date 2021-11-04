@@ -32,14 +32,7 @@ class Test extends React.Component{
         //     }
         
     }
-    loadVideo=()=>{
-            //     var webRtcServer      = null;
-            //     window.onload         = function() { 
-            //         webRtcServer      = new WebRtcStreamer("video","http://localhost:8000/");
-            // webRtcServer.connect("rtsp://192.168.1.215:554/main_stream");
-            //     }
-            }
-    
+   
 
         
     render(){
