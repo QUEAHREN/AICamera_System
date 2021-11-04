@@ -26,10 +26,15 @@ class Preview extends React.Component{
             Username:getUserName()
         })
 
+
+      }
         
-    }
+    
+
+
 
     render(){
+
         return(
             <Layout>
                 <Header className="header">
@@ -41,6 +46,7 @@ class Preview extends React.Component{
                     <Menu.Item >欢迎您！用户{this.state.Username}</Menu.Item>
                 </Menu>
                 </Header>
+
                 <Layout>
                 
                 <Layout style={{ padding: '0 24px 24px' }}>
@@ -52,16 +58,12 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    <VideoPlayer></VideoPlayer>
+                    {/* <VideoPlayer></VideoPlayer> */}
                     
-                    <easy-player id="player" 
-                                live="true" 
-                                video-url = 'rtmp://202.69.69.180:443/webcast/bshdlive-pc'
-                                show-custom-button="true">
-                    </easy-player>
                     
                     </Content>
                 </Layout>
+
                 </Layout>
        
             </Layout>
