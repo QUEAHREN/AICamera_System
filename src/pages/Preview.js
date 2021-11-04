@@ -20,12 +20,18 @@ class Preview extends React.Component{
     }
 
     componentDidMount(){
+
         const _this = this;
         checkToken(_this);
         this.setState({
             Username:getUserName()
         })
 
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'http://127.0.0.1:8080/plugins/jquery.min.js';
+        document.head.appendChild(script);    
 
       }
         
@@ -58,7 +64,7 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    {/* <VideoPlayer></VideoPlayer> */}
+                    <VideoPlayer></VideoPlayer>
                     
                     
                     </Content>

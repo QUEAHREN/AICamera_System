@@ -19,7 +19,7 @@ class VideoPlayer extends React.Component{
             controls: true,
             muted:true,
             sources: [{
-              src: "rtmp://live.hkstv.hk.lxdns.com/live/hks",
+              src: "rtmp://192.168.1.215:1936/main_stream",
                 // src: "rtmp://live.hkstv.hk.lxdns.com/live/hks",
                 type: 'rtmp/mp4'
             }]
