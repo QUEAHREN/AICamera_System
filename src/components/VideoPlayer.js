@@ -4,7 +4,7 @@ import 'videojs-flash'
 import videojs from 'video.js'
 const url = [
     {
-        url:"rtmp://live.hkstv.hk.lxdns.com/live/hks",
+        url:"rtmp://192.168.1.215:1936/main_stream",
         name:"监控"
     }
 ]
@@ -19,8 +19,7 @@ class VideoPlayer extends React.Component{
             controls: true,
             muted:true,
             sources: [{
-              src: "rtmp://192.168.1.215:1936/main_stream",
-                // src: "rtmp://live.hkstv.hk.lxdns.com/live/hks",
+                src: "rtmp://192.168.1.215:1936/main_stream",
                 type: 'rtmp/mp4'
             }]
           }
@@ -35,18 +34,8 @@ class VideoPlayer extends React.Component{
           }); 
     }
 
-    handleClick(item){
-        if(item.name===this.state.nowPlay){
-            return
-        }
-        this.setState({
-            nowPlay:item.name
-        })
-            // this.player.pause();
-            this.player.src(item.url);
-            this.player.load();
-            this.player.play();
-    }
+
+    
     render(){
         let li = {
             background: "cadetblue",
@@ -66,17 +55,8 @@ class VideoPlayer extends React.Component{
             <div
                 className="main-wrap"
             >
-                <div className="title">测试video.js</div>
                 <div>
-                    <ul style={{listStyleType: "decimal-leading-zero",float:"left"}}>
-                    {
-                        url.map((item,index)=>{
-                            return <li style={{height:60}} key={item.name} onClick={()=>this.handleClick(item)}>
-                                        <span style={this.state.nowPlay===item.name?playing:li}>{item.name}</span>
-                                    </li>
-                        })
-                    }
-                    </ul>
+                
                     <video style={{width:"50vw",height:"50vh",margin:"0 auto"}} id="my-video" className="video-js vjs-default-skin">
                     </video>
                 </div>

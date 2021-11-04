@@ -16,6 +16,7 @@ class OLState extends React.Component{
             systemStatus:'success',
             isOline:0,
             systemStatusTxt:'运行中',
+            baseUrl:window.config.baseUrl
         }
         
     }
@@ -36,12 +37,11 @@ class OLState extends React.Component{
     
     componentDidMount(){
         
-        
-
+        let Url = this.state.baseUrl + '/System/Info/OnlineState'
 
         const _this=this;  
         axios.defaults.withCredentials = true;
-        axios.get('http://192.168.1.215:8080/System/Info/OnlineState')
+        axios.get(Url)
         .then(function (response) {
             _this.setState({
                 isOline:response.data.Result,

@@ -11,7 +11,7 @@ class PortInfo extends React.Component{
         super(props);
 
         this.state={
-
+            baseUrl:window.config.baseUrl
         }
         
     }

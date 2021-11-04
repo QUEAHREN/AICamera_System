@@ -21,6 +21,7 @@ class LANConfig extends React.Component{
             IPv4Netmask:'',
             IPv4Gateway:'',
             DNS:'',
+            baseUrl:window.config.baseUrl
         }
         
     }
@@ -29,9 +30,11 @@ class LANConfig extends React.Component{
 
         // const _this = this;
         // let token = getToken();
-        
+
+        // let Url = this.state.baseUrl + '/Network/LAN/Config'
+
         // axios.defaults.withCredentials = true;
-        // axios.get('http://192.168.1.215:8080/Network/LAN/Config',{
+        // axios.get(Url,{
         //     headers: {
         //         'Token': token
         //     }

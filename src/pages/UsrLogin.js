@@ -17,7 +17,8 @@ class UsrLogin extends React.Component{
             Password:"00000000",
             Result:'1',
             Auth:'0',
-            Token:''
+            Token:'',
+            baseUrl:window.config.baseUrl
 
         }
     }
@@ -57,8 +58,9 @@ class UsrLogin extends React.Component{
     login=()=>{
 
         const _this=this;   
+        let Url = this.state.baseUrl + '/User/Login'
 
-        axios.post('http://192.168.1.215:8080/User/Login',{
+        axios.post(Url,{
             UserName:this.state.UserName,
             Password:this.state.Password
         })

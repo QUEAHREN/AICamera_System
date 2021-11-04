@@ -27,7 +27,8 @@ class GB28181Config extends React.Component{
             SpeakerPort: '',		
             OpenEncode: '',			
             OpenRecord:'',			
-            OpenAlarm:''	
+            OpenAlarm:'',
+            baseUrl:window.config.baseUrl	
         }
         
     }
@@ -37,8 +38,11 @@ class GB28181Config extends React.Component{
         const _this = this;
         let token = getToken();
         
+       
+        let Url = this.state.baseUrl + '/GB28181/Base'
+
         axios.defaults.withCredentials = true;
-        axios.get('http://192.168.1.215:8080/GB28181/Base',{
+        axios.get(Url,{
             headers: {
                 'Token': token
             }

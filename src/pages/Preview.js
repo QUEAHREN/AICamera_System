@@ -3,6 +3,8 @@ import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom'
 import {checkToken,getUserName} from '../model/mcookie'
 import VideoPlayer from '../components/VideoPlayer';
+import ReactJWPlayer from 'react-jw-player'
+
 
 import 'antd/dist/antd.css';
 
@@ -27,11 +29,11 @@ class Preview extends React.Component{
             Username:getUserName()
         })
 
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.async = true;
-        script.src = 'http://127.0.0.1:8080/plugins/jquery.min.js';
-        document.head.appendChild(script);    
+        // var script = document.createElement('script');
+        // script.type = 'text/javascript';
+        // script.async = true;
+        // script.src = 'http://127.0.0.1:8080/plugins/jquery.min.js';
+        // document.head.appendChild(script);    
 
       }
         
@@ -66,7 +68,11 @@ class Preview extends React.Component{
                     >
                     <VideoPlayer></VideoPlayer>
                     
-                    
+                    {/* <ReactJWPlayer
+                        playerId='my-unique-id'
+                        playerScript='https://link-to-my-jw-player/script.js'
+                        playlist='https://link-to-my-playlist.json'
+                    /> */}
                     </Content>
                 </Layout>
 
