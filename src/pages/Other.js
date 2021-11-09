@@ -5,8 +5,7 @@ import 'antd/dist/antd.css';
 import { Empty } from 'antd';
 import {checkToken,getUserName} from '../model/mcookie'
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 class Preview extends React.Component{
 

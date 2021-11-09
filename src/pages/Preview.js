@@ -1,13 +1,14 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom'
-import { Empty} from 'antd';
 import {checkToken,getUserName} from '../model/mcookie'
+import VideoPlayer from '../components/VideoPlayer';
+import ReactJWPlayer from 'react-jw-player'
+
 
 import 'antd/dist/antd.css';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 class Preview extends React.Component{
 
@@ -21,14 +22,27 @@ class Preview extends React.Component{
     }
 
     componentDidMount(){
+
         const _this = this;
         checkToken(_this);
         this.setState({
             Username:getUserName()
         })
-    }
+
+        // var script = document.createElement('script');
+        // script.type = 'text/javascript';
+        // script.async = true;
+        // script.src = 'http://127.0.0.1:8080/plugins/jquery.min.js';
+        // document.head.appendChild(script);    
+
+      }
+        
+    
+
+
 
     render(){
+
         return(
             <Layout>
                 <Header className="header">
@@ -40,6 +54,7 @@ class Preview extends React.Component{
                     <Menu.Item >欢迎您！用户{this.state.Username}</Menu.Item>
                 </Menu>
                 </Header>
+
                 <Layout>
                 
                 <Layout style={{ padding: '0 24px 24px' }}>
@@ -51,11 +66,18 @@ class Preview extends React.Component{
                         minHeight: 280,
                     }}
                     >
-                    <Empty></Empty>
-
+                    <VideoPlayer></VideoPlayer>
+                    
+                    {/* <ReactJWPlayer
+                        playerId='my-unique-id'
+                        playerScript='https://link-to-my-jw-player/script.js'
+                        playlist='https://link-to-my-playlist.json'
+                    /> */}
                     </Content>
                 </Layout>
+
                 </Layout>
+       
             </Layout>
         )
     }

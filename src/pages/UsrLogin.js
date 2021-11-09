@@ -17,14 +17,15 @@ class UsrLogin extends React.Component{
             Password:"00000000",
             Result:'1',
             Auth:'0',
-            Token:''
+            Token:'',
+            baseUrl:window.config.baseUrl
 
         }
     }
 
     componentDidMount(){
 
-        if (navigator.cookieEnabled == true){
+        if (navigator.cookieEnabled === true){
             console.log('已启用cookie');
         }
         else{
@@ -49,7 +50,7 @@ class UsrLogin extends React.Component{
     }
 
     keyUp=(e)=>{
-        if (e.keyCode == 13){
+        if (e.keyCode === 13){
             this.login();
         }
     }
@@ -57,8 +58,9 @@ class UsrLogin extends React.Component{
     login=()=>{
 
         const _this=this;   
+        let Url = this.state.baseUrl + '/User/Login'
 
-        axios.post('http://192.168.1.215:8080/User/Login',{
+        axios.post(Url,{
             UserName:this.state.UserName,
             Password:this.state.Password
         })
@@ -69,7 +71,7 @@ class UsrLogin extends React.Component{
                 Token:response.data.Token,
             });
             console.log(_this.props )
-            if (_this.state.Result == 0){
+            if (_this.state.Result === 0){
                 onLogin(_this.state.Token, _this.state.Auth, _this.state.UserName)
                 _this.props.history.push('/Preview')
             }
@@ -92,7 +94,7 @@ class UsrLogin extends React.Component{
             <div>
                 <div class="content">
                 <div class="login-box">
-                    <h1></h1>
+                
                     <div class="output-frame">
                         <label for="username">账号</label>
                         <input type="text" id="username" autofocus  

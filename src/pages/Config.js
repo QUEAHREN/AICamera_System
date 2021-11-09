@@ -87,7 +87,8 @@ class Config extends React.Component{
                     flag:7
                 })
                 break;       
-
+            default:
+                break;
         }
 
     }
@@ -108,6 +109,8 @@ class Config extends React.Component{
                 return (<PortInfo/>);      
             case 7:
                 return (<GB28181Config/>);
+            default:
+                break;
         }
 
     }

@@ -25,6 +25,7 @@ class DeviceInfo extends React.Component{
             DeviceModel: '',
             SerialNumber: '',
             ManufactureDate: '',
+            baseUrl:window.config.baseUrl
         }
     }
 
@@ -34,8 +35,12 @@ class DeviceInfo extends React.Component{
         const _this = this;
         let token = getToken();
         
+
+        let Url = this.state.baseUrl + '/System/Info/Device'
+
+
         axios.defaults.withCredentials = true;
-        axios.get('http://192.168.1.215:8080/System/Info/Device',{
+        axios.get(Url,{
             headers: {
                 'Token': token
             }
