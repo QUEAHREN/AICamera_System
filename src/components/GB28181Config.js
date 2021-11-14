@@ -38,7 +38,6 @@ class GB28181Config extends React.Component{
         const _this = this;
         let token = getToken();
         
-       
         let Url = this.state.baseUrl + '/GB28181/Base'
 
         axios.defaults.withCredentials = true;
@@ -75,6 +74,9 @@ class GB28181Config extends React.Component{
         })
 
     }
+
+
+
     render(){
         return(
 

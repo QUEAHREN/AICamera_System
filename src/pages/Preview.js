@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import {checkToken,getUserName} from '../model/mcookie'
 import VideoPlayer from '../components/VideoPlayer';
 import ReactJWPlayer from 'react-jw-player'
-
+import Paperbase from  '../newPages/Paperbase'
 
 import 'antd/dist/antd.css';
 
@@ -44,41 +44,42 @@ class Preview extends React.Component{
     render(){
 
         return(
-            <Layout>
-                <Header className="header">
-                <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1"><NavLink to='/Preview'>预览</NavLink></Menu.Item>
-                    <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
-                    <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
-                    <Menu.Item >欢迎您！用户{this.state.Username}</Menu.Item>
-                </Menu>
-                </Header>
+            <Paperbase></Paperbase>
+            // <Layout>
+            //     <Header className="header">
+            //     <div className="logo" />
+            //     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+            //         <Menu.Item key="1"><NavLink to='/Preview'>预览</NavLink></Menu.Item>
+            //         <Menu.Item key="2"><NavLink to='/Config'>配置</NavLink></Menu.Item>
+            //         <Menu.Item key="3"><NavLink to='/Other'>其他</NavLink></Menu.Item>
+            //         <Menu.Item >欢迎您！用户{this.state.Username}</Menu.Item>
+            //     </Menu>
+            //     </Header>
 
-                <Layout>
+            //     <Layout>
                 
-                <Layout style={{ padding: '0 24px 24px' }}>
-                    <Content
-                    className="site-layout-background"
-                    style={{
-                        padding: 24,
-                        margin: 0,
-                        minHeight: 280,
-                    }}
-                    >
-                    <VideoPlayer></VideoPlayer>
+            //     <Layout style={{ padding: '0 24px 24px' }}>
+            //         <Content
+            //         className="site-layout-background"
+            //         style={{
+            //             padding: 24,
+            //             margin: 0,
+            //             minHeight: 280,
+            //         }}
+            //         >
+            //         <VideoPlayer></VideoPlayer>
                     
-                    {/* <ReactJWPlayer
-                        playerId='my-unique-id'
-                        playerScript='https://link-to-my-jw-player/script.js'
-                        playlist='https://link-to-my-playlist.json'
-                    /> */}
-                    </Content>
-                </Layout>
+            //         {/* <ReactJWPlayer
+            //             playerId='my-unique-id'
+            //             playerScript='https://link-to-my-jw-player/script.js'
+            //             playlist='https://link-to-my-playlist.json'
+            //         /> */}
+            //         </Content>
+            //     </Layout>
 
-                </Layout>
+            //     </Layout>
        
-            </Layout>
+            // </Layout>
         )
     }
 
