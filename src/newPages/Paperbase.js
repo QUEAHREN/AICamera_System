@@ -8,13 +8,13 @@ import Link from '@mui/material/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
-import LANConfig from '../components/LANConfig';
-import DeviceInfo from '../components/DeviceInfo';
-import OLState from '../components/OLState';
-import FirmwareUpload from '../components/FirmwareUpload';
-import Reboot from '../components/Reboot';
-import PortInfo from '../components/PortInfo';
-import GB28181Config from '../components/GB28181Config';
+import LANConfig from '../components/compo_config/LANConfig';
+import DeviceInfo from '../components/compo_config/DeviceInfo';
+import OLState from '../components/compo_config/OLState';
+import FirmwareUpload from '../components/compo_config/FirmwareUpload';
+import Reboot from '../components/compo_config/Reboot';
+import PortInfo from '../components/compo_config/PortInfo';
+import GB28181Config from '../components/compo_config/GB28181Config';
 
 function Copyright() {
     return (
@@ -309,6 +309,7 @@ export default function Paperbase() {
                             variant="temporary"
                             open={mobileOpen}
                             onClose={handleDrawerToggle}
+                            getselectedIndexValue = {getChildrensIValue}
                         />
                     )}
 

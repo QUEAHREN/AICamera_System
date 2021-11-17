@@ -7,16 +7,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
-import PeopleIcon from '@mui/icons-material/People';
-import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
 import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import PublicIcon from '@mui/icons-material/Public';
-import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
-import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
-import TimerIcon from '@mui/icons-material/Timer';
+import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import SettingsIcon from '@mui/icons-material/Settings';
-import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const categories = [
     {
@@ -24,7 +19,7 @@ const categories = [
         children: [
             {
                 id: '系统',
-                icon: <PeopleIcon />,
+                icon: <PermDataSettingIcon />,
             },
             { id: '网络', icon: <PublicIcon /> },
             { id: '媒体', icon: <PermMediaOutlinedIcon /> },
@@ -60,6 +55,7 @@ export default function Navigator(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const handleListItemClick = (event, index) => {
+        console.log(index);
         setSelectedIndex(index);
         props.getselectedIndexValue(index);
         
@@ -73,7 +69,7 @@ export default function Navigator(props) {
                 </ListItem>
                 <ListItem sx={{ ...item, ...itemCategory }}>
                     <ListItemIcon>
-                        <HomeIcon />
+                        <VisibilityIcon />
                     </ListItemIcon>
                     <ListItemText>预览</ListItemText>
                 </ListItem>
@@ -81,11 +77,15 @@ export default function Navigator(props) {
                     <Box key={id} sx={{ bgcolor: '#101F33' }}>
                         <ListItem sx={{ py: 2, px: 3 }}>
                             <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
+                           
                         </ListItem>
                         {children.map(({ id: childId, icon }, cindex) => (
                             <ListItem disablePadding >
                                 <ListItemButton  sx={item} selected={selectedIndex === index*3+cindex}
-                                    onClick={(event) => handleListItemClick(event, index*3+cindex)}
+                                    onClick={(event) => {
+                                        console.log(index*3+cindex)
+                                        handleListItemClick(event, index*3+cindex)
+                                    }}
                                 >
                                     <ListItemIcon>{icon}</ListItemIcon>
                                     <ListItemText>{childId}</ListItemText>

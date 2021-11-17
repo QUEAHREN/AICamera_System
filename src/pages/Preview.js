@@ -2,8 +2,6 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom'
 import {checkToken,getUserName} from '../model/mcookie'
-import VideoPlayer from '../components/VideoPlayer';
-import ReactJWPlayer from 'react-jw-player'
 import Paperbase from  '../newPages/Paperbase'
 
 import 'antd/dist/antd.css';
@@ -24,7 +22,7 @@ class Preview extends React.Component{
     componentDidMount(){
 
         const _this = this;
-        checkToken(_this);
+        // checkToken(_this);
         this.setState({
             Username:getUserName()
         })

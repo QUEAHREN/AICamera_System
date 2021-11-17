@@ -13,9 +13,9 @@ class OLState extends React.Component{
         super(props);
 
         this.state={
-            systemStatus:'success',
-            isOline:0,
-            systemStatusTxt:'运行中',
+            systemStatus:'error',
+            isOline:1,
+            systemStatusTxt:'错误',
             baseUrl:window.config.baseUrl
         }
         
