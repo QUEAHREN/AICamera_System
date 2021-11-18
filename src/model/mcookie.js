@@ -32,9 +32,10 @@ export const logout = () => {
 export const checkToken = (_this) =>{
 
     let token = getToken();
-    if (typeof(token) == "undefined" ){
-        alert('登录已失效！')
-        _this.props.history.push('/login')
+    if (typeof(token) === "undefined" ){
+        alert('登录已失效！');
+        if (typeof(_this.props) === "undefined" )   _this.history.push('/login');
+        else                                        _this.props.history.push('/login');
     }
 
 }

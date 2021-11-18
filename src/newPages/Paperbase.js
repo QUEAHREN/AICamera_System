@@ -15,6 +15,8 @@ import FirmwareUpload from '../components/compo_config/FirmwareUpload';
 import Reboot from '../components/compo_config/Reboot';
 import PortInfo from '../components/compo_config/PortInfo';
 import GB28181Config from '../components/compo_config/GB28181Config';
+import { checkToken } from '../model/mcookie';
+
 
 function Copyright() {
     return (
@@ -173,7 +175,7 @@ theme = {
 
 const drawerWidth = 256;
 
-export default function Paperbase() {
+export default function Paperbase(props) {
 
 
     const initmenu = [
@@ -197,6 +199,11 @@ export default function Paperbase() {
     const [chmenu, setChmenu] = React.useState(initchmenu);
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
+
+    React.useEffect(() => {
+        checkToken(props);
+    }, [chmenu, menu])
+
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

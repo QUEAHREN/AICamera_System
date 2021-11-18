@@ -15,11 +15,10 @@ class RouterConfig extends React.Component{
             <Router history={history}>
                 <Switch>
                     <Route path='/' exact render={()=>(
-                        <Redirect to='/Preview'/>
+                        <Redirect to='/Index'/>
                     )}/>
                     <Route path='/Login' component={UsrLogin}/>
                     <Route path='/Index' component={Paperbase}/>
-                   
                     <Route path='/Other' component={Other}/>                    
 
                 </Switch>
