@@ -4,6 +4,14 @@ import 'antd/dist/antd.css';
 import { Descriptions, Badge } from 'antd';
 import axios from 'axios';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 class OLState extends React.Component{
 
@@ -24,15 +32,30 @@ class OLState extends React.Component{
     render(){
         return(
 
-            <Layout>
-                <Descriptions title="" bordered>               
-                    <Descriptions.Item label="设备状态" span={3} >
-                    <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
-                    </Descriptions.Item>       
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 ,
+                '.cell':{
+                    fontWeight:"bold"
+                }}} aria-label="simple table">
+
+                    <TableBody >
+
+                        <TableRow>
+                            <TableCell className="cell">设备状态</TableCell>
+                            <TableCell><Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} /></TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            // <Layout>
+            //     <Descriptions title="" bordered>               
+            //         <Descriptions.Item label="设备状态" span={3} >
+            //         <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
+            //         </Descriptions.Item>       
                               
-                </Descriptions>
+            //     </Descriptions>
                 
-            </Layout>
+            // </Layout>
         )
     }
     
