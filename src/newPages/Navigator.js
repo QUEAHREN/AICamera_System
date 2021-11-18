@@ -58,7 +58,7 @@ export default function Navigator(props) {
         console.log(index);
         setSelectedIndex(index);
         props.getselectedIndexValue(index);
-        
+
     };
 
     return (
@@ -77,14 +77,14 @@ export default function Navigator(props) {
                     <Box key={id} sx={{ bgcolor: '#101F33' }}>
                         <ListItem sx={{ py: 2, px: 3 }}>
                             <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
-                           
+
                         </ListItem>
                         {children.map(({ id: childId, icon }, cindex) => (
                             <ListItem disablePadding >
-                                <ListItemButton  sx={item} selected={selectedIndex === index*3+cindex}
+                                <ListItemButton sx={item} selected={selectedIndex === index * 3 + cindex}
                                     onClick={(event) => {
-                                        console.log(index*3+cindex)
-                                        handleListItemClick(event, index*3+cindex)
+                                        console.log(index * 3 + cindex)
+                                        handleListItemClick(event, index * 3 + cindex)
                                     }}
                                 >
                                     <ListItemIcon>{icon}</ListItemIcon>

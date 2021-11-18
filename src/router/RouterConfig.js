@@ -19,7 +19,7 @@ class RouterConfig extends React.Component{
                     )}/>
                     <Route path='/Login' component={UsrLogin}/>
                     <Route path='/Index' component={Paperbase}/>
-                    <Route path='/Preview' component={Preview}/>
+                   
                     <Route path='/Other' component={Other}/>                    
 
                 </Switch>

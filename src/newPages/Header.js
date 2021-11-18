@@ -19,14 +19,14 @@ const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
 
-    
+
     const { onDrawerToggle, menu, chmenu, hvalue } = props;
     const [value, setValue] = React.useState(0);
 
     const handleButtonClick = (event, index) => {
         setValue(index);
         props.getHeaderValue(index);
-        
+
     };
 
     return (
@@ -117,8 +117,8 @@ function Header(props) {
             </AppBar>
             <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
                 {/* 为了使每次切换navigator目录时能把header切换回首个选项，所以需要读取父组件的值 */}
-                <Tabs value={hvalue===0?hvalue:value} textColor="inherit" onChange={(event,newvalue) => handleButtonClick(event, newvalue)} >
-                    {chmenu.map(({ id, active }, index) => (                      
+                <Tabs value={hvalue === 0 ? hvalue : value} textColor="inherit" onChange={(event, newvalue) => handleButtonClick(event, newvalue)} >
+                    {chmenu.map(({ id, active }, index) => (
                         <Tab label={id} selected={active} value={index} />
                     ))}
                 </Tabs>
