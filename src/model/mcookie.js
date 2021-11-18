@@ -13,7 +13,7 @@ export const getUserName = () => {
 // 用户登录，保存cookie
 export const onLogin = (Token, Auth, UserName) => {
 
-    let inFifteenMinutes = new Date(new Date().getTime() + 3000 * 1000);
+    let inFifteenMinutes = new Date(new Date().getTime() + 300 * 1000);
     cookie.save('Token', Token, { path: '/', expires: inFifteenMinutes });
     cookie.save('Auth', Auth, { path: '/', expires: inFifteenMinutes });
     cookie.save('UserName', UserName, { path: '/', expires: inFifteenMinutes });

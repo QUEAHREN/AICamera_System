@@ -13,7 +13,7 @@ import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from '_axios@0.24.0@axios';
-import { onLogin,getToken, logout } from '../model/mcookie';
+import { onLogin,getToken, logout } from '../../model/mcookie';
 import { createHashHistory } from "history";
 
 const categories = [
