@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import { Button } from 'antd';
 import axios from '_axios@0.24.0@axios';
-import {getToken} from '../../model/mcookie';
+import {deleteCookies, getToken, logout} from '../../model/mcookie';
 import { createHashHistory } from "history";
 const history = createHashHistory();
 
@@ -37,7 +37,9 @@ class Reboot extends React.Component{
             console.log(response.data); 
             if (response.data.Result === 1){
                 alert(response.data.ErrMsg)
+                deleteCookies();
                 history.push(`/login`);
+                
             }else{
                 alert("系统重启成功！");
             }
@@ -65,6 +67,7 @@ class Reboot extends React.Component{
             console.log(response.data); 
             if (response.data.Result === 1){
                 alert(response.data.ErrMsg)
+                deleteCookies();
                 history.push(`/login`);
             }else{
                 alert("系统软启动成功！");

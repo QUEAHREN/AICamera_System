@@ -29,16 +29,38 @@ export const logout = (props) => {
     props.history.push('/login');
 };
 
+
+// 删除cookie
+export const deleteCookies = () => {
+
+    cookie.remove('Token');
+    cookie.remove('Auth');
+    cookie.remove('UserName');
+
+};
+
+
 // 检测token是否过期
 export const checkToken = (_this) =>{
 
     let token = getToken();
-    console.log(token)
     if (typeof(token) === "undefined" ){
         alert('登录已失效！');
         if (typeof(_this.props) === "undefined" )   _this.history.push('/login');
         else                                        _this.props.history.push('/login');
     }
-  
+    else return 1;
+
+}
+
+// 检测token是否过期,返回1
+export const checkToken2 = (_this) =>{
+
+    let token = getToken();
+
+    if (typeof(token) === "undefined" ){
+
+    }
+    else return 1;
 
 }

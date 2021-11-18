@@ -2,7 +2,7 @@ import React from 'react';
 import axios from '_axios@0.24.0@axios';
 import '../assets/css/login.css'
 import { onLogin } from '../model/mcookie'
-import { checkToken } from '../model/mcookie';
+import { checkToken2 } from '../model/mcookie';
 
 class UsrLogin extends React.Component {
 
@@ -31,7 +31,8 @@ class UsrLogin extends React.Component {
         else {
             alert('请开启cookie');
         }
-        
+        if (checkToken2(this) === 1)
+            this.props.history.push('/index');
     }
 
     handleUseNameChange = (e) => {
@@ -70,7 +71,6 @@ class UsrLogin extends React.Component {
                     Auth: response.data.Auth,
                     Token: response.data.Token,
                 });
-                console.log(_this.props)
                 if (response.data.Result === 0) {
                     onLogin(response.data.Token, _this.state.Auth, _this.state.UserName)
                     _this.props.history.push('/Index')

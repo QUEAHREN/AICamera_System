@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import { Descriptions } from 'antd';
 import axios from 'axios';
 import { createHashHistory } from "history";
-import {getToken} from '../../model/mcookie'
+import {deleteCookies, getToken, logout} from '../../model/mcookie'
 const history = createHashHistory();
 
 class GB28181Config extends React.Component{
@@ -66,6 +66,7 @@ class GB28181Config extends React.Component{
             console.log(response.data)
             if (_this.state.Result === 1){
                 alert(response.data.ErrMsg)
+                deleteCookies();
                 history.push(`/login`);
             }
         })

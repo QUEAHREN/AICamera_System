@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Navigator from '../components/compo_index/Navigator';
-import Content from '../components/compo_index/Content';
 import Header from '../components/compo_index/Header';
 import LANConfig from '../components/compo_config/LANConfig';
 import DeviceInfo from '../components/compo_config/DeviceInfo';

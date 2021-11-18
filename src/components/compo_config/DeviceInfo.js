@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import { Descriptions } from 'antd';
 import axios from 'axios';
 import { createHashHistory } from "history";
-import {getToken} from '../../model/mcookie'
+import {deleteCookies, getToken, logout} from '../../model/mcookie'
 const history = createHashHistory();
 
 
@@ -60,7 +60,9 @@ class DeviceInfo extends React.Component{
 
             if (_this.state.Result === 1){
                 alert(response.data.ErrMsg)
+                deleteCookies();
                 history.push(`/login`);
+
             }
         })
         .catch(function (error) {
