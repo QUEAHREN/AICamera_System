@@ -13,8 +13,8 @@ class UsrLogin extends React.Component {
 
         this.state = {
 
-            UserName: "admin",
-            Password: "00000000",
+            UserName: "",
+            Password: "",
             Result: '2',
             Auth: '0',
             Token: '',

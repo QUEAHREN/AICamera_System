@@ -15,6 +15,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from '_axios@0.24.0@axios';
 import { onLogin,getToken, logout } from '../../model/mcookie';
 import { createHashHistory } from "history";
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const categories = [
     {
@@ -134,7 +135,7 @@ export default function Navigator(props) {
                 ))}
                 <ListItem sx={{ ...item, ...itemCategory }} onClick={onReboot}>
                     <ListItemIcon>
-                        <VisibilityIcon />
+                        <AutorenewIcon />
                     </ListItemIcon>
                     <ListItemText>重启系统</ListItemText>
                 </ListItem>

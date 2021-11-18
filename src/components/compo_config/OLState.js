@@ -26,7 +26,7 @@ class OLState extends React.Component{
 
             <Layout>
                 <Descriptions title="" bordered>               
-                    <Descriptions.Item label="设备状态" span={3}>
+                    <Descriptions.Item label="设备状态" span={3} >
                     <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
                     </Descriptions.Item>       
                               

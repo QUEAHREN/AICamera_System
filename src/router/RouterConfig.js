@@ -1,7 +1,5 @@
 
 import UsrLogin from '../newPages/UsrLogin';
-import Preview from '../pages/Preview';
-import Other from '../pages/Other';
 
 import React from 'react';
 import {Router,Route,Switch,Redirect} from 'react-router-dom';
@@ -19,7 +17,7 @@ class RouterConfig extends React.Component{
                     )}/>
                     <Route path='/Login' component={UsrLogin}/>
                     <Route path='/Index' component={Paperbase}/>
-                    <Route path='/Other' component={Other}/>                    
+                 
 
                 </Switch>
             </Router>
