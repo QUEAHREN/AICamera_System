@@ -12,6 +12,9 @@ import PublicIcon from '@mui/icons-material/Public';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import axios from '_axios@0.24.0@axios';
+import { onLogin,getToken, logout } from '../model/mcookie';
+import { createHashHistory } from "history";
 
 const categories = [
     {
@@ -48,6 +51,7 @@ const itemCategory = {
     py: 1.5,
     px: 3,
 };
+const history = createHashHistory();
 
 export default function Navigator(props) {
 
@@ -60,6 +64,38 @@ export default function Navigator(props) {
         props.getselectedIndexValue(index);
 
     };
+
+    const onReboot=()=>{
+
+        const _this = this;
+        let token = getToken();
+
+        axios.defaults.withCredentials = true;
+        axios({
+            method: 'post',
+            url: 'http://192.168.1.215:8080/System/Reboot',
+            headers: {
+                'Token': token
+            }
+          }).then(function (response) {
+            
+            console.log(response.data); 
+            if (response.data.Result === 1){
+                alert(response.data.ErrMsg)
+                history.push(`/login`);
+            }else{
+                alert("系统重启成功，请重新登录。");
+                history.push(`/login`);
+                logout(props);
+            }
+        })
+        .catch(function (error) {
+            console.log(error); 
+            
+        })
+
+    }
+
 
     return (
         <Drawer variant="permanent" {...other}>
@@ -96,6 +132,12 @@ export default function Navigator(props) {
                         <Divider sx={{ mt: 2 }} />
                     </Box>
                 ))}
+                <ListItem sx={{ ...item, ...itemCategory }} onClick={onReboot}>
+                    <ListItemIcon>
+                        <VisibilityIcon />
+                    </ListItemIcon>
+                    <ListItemText>重启系统</ListItemText>
+                </ListItem>
             </List>
         </Drawer>
     );

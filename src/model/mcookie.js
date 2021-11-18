@@ -17,25 +17,28 @@ export const onLogin = (Token, Auth, UserName) => {
     cookie.save('Token', Token, { path: '/', expires: inFifteenMinutes });
     cookie.save('Auth', Auth, { path: '/', expires: inFifteenMinutes });
     cookie.save('UserName', UserName, { path: '/', expires: inFifteenMinutes });
-
+    
 };
  
 // 用户登出，删除cookie
-export const logout = () => {
+export const logout = (props) => {
+    console.log(props)
     cookie.remove('Token');
     cookie.remove('Auth');
     cookie.remove('UserName');
-    window.location.href = '/';
+    props.history.push('/login');
 };
 
 // 检测token是否过期
 export const checkToken = (_this) =>{
 
     let token = getToken();
+    console.log(token)
     if (typeof(token) === "undefined" ){
         alert('登录已失效！');
         if (typeof(_this.props) === "undefined" )   _this.history.push('/login');
         else                                        _this.props.history.push('/login');
     }
+  
 
 }

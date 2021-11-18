@@ -2,7 +2,7 @@ import React from 'react';
 import axios from '_axios@0.24.0@axios';
 import '../assets/css/login.css'
 import { onLogin } from '../model/mcookie'
-
+import { checkToken } from '../model/mcookie';
 
 class UsrLogin extends React.Component {
 
@@ -31,7 +31,7 @@ class UsrLogin extends React.Component {
         else {
             alert('请开启cookie');
         }
-
+        
     }
 
     handleUseNameChange = (e) => {
@@ -71,20 +71,22 @@ class UsrLogin extends React.Component {
                     Token: response.data.Token,
                 });
                 console.log(_this.props)
-                if (_this.state.Result === 0) {
-                    onLogin(_this.state.Token, _this.state.Auth, _this.state.UserName)
+                if (response.data.Result === 0) {
+                    onLogin(response.data.Token, _this.state.Auth, _this.state.UserName)
                     _this.props.history.push('/Index')
                 }
-                else if (_this.state.Result === 1)
+                else if (_this.state.Result === 1){
                     alert("登录失败")
+                    
+                }
 
 
             })
             .catch(function (error) {
                 console.log(error);
                 alert("登录失败")
+                _this.props.history.push('/login')
             })
-
 
     }
 
@@ -117,7 +119,7 @@ class UsrLogin extends React.Component {
                                                 onClick={this.login}>Login</button>
                                         </div>
                                         <div class="form-group d-md-flex">
-                                            <div class="w-50">
+                                            {/* <div class="w-50">
                                                 <label class="checkbox-wrap checkbox-primary">Remember Me
                                                     <input type="checkbox" checked />
                                                     <span class="checkmark"></span>
@@ -125,7 +127,7 @@ class UsrLogin extends React.Component {
                                             </div>
                                             <div class="w-50 text-md-right">
                                                 <a href="#">Forgot Password</a>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </form>
                                 </div>

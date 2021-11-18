@@ -16,7 +16,7 @@ import Reboot from '../components/compo_config/Reboot';
 import PortInfo from '../components/compo_config/PortInfo';
 import GB28181Config from '../components/compo_config/GB28181Config';
 import { checkToken } from '../model/mcookie';
-
+import { useRef, useEffect } from 'react';
 
 function Copyright() {
     return (
@@ -200,9 +200,19 @@ export default function Paperbase(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
-    React.useEffect(() => {
+    const firstUpdate = useRef(true);
+
+    function useDidUpdateEffect(fn, inputs) {
+        const didMountRef = useRef(false);
+        useEffect(() => {
+            if (didMountRef.current) fn();
+            else didMountRef.current = true;
+        }, inputs);
+    }
+
+    useDidUpdateEffect(() => {
         checkToken(props);
-    }, [chmenu, menu])
+    }, [chmenu, menu]);
 
 
     const handleDrawerToggle = () => {
@@ -213,29 +223,29 @@ export default function Paperbase(props) {
     // Header中的菜单值
     const [hvalue, setHvalue] = React.useState(0);
 
-    function showContent(){
-        if (sIValue === 0){
-            if (hvalue === 0)   return (<OLState/>);
-            if (hvalue === 1)   return (<DeviceInfo/>);
-            if (hvalue === 2)   return (<FirmwareUpload/>);
-            if (hvalue === 3)   return (<Reboot/>);
+    function showContent() {
+        if (sIValue === 0) {
+            if (hvalue === 0) return (<OLState />);
+            if (hvalue === 1) return (<DeviceInfo />);
+            if (hvalue === 2) return (<FirmwareUpload />);
+            if (hvalue === 3) return (<Reboot />);
         }
-        if (sIValue === 1){
-            if (hvalue === 0)   return (<LANConfig/>);
-            if (hvalue === 1)   return (<PortInfo/>);
-            if (hvalue === 2)   return (<GB28181Config/>);
+        if (sIValue === 1) {
+            if (hvalue === 0) return (<LANConfig />);
+            if (hvalue === 1) return (<PortInfo />);
+            if (hvalue === 2) return (<GB28181Config />);
 
         }
     }
 
     const getHValue = (val) => {
-        setHvalue(val); 
+        setHvalue(val);
     }
 
     const getChildrensIValue = (val) => {
         setsIValue(val);
-        
-        if (val === 0){
+
+        if (val === 0) {
             var newmenu = [
                 {
                     id: '系统',
@@ -248,15 +258,15 @@ export default function Paperbase(props) {
                 },
                 { id: '设备相关信息' },
                 { id: '上传固件' },
-                { id: '重启及其他操作' }   
+                { id: '重启及其他操作' }
             ]
-        } 
-        if (val === 1){
+        }
+        if (val === 1) {
             var newmenu = [
                 {
                     id: '网络',
                 }
-            ]      
+            ]
             var newchmenu = [
                 {
                     id: 'LAN 设置',
@@ -266,12 +276,12 @@ export default function Paperbase(props) {
                 { id: 'GB28181 配置信息' },
             ]
         }
-        if (val === 2){
+        if (val === 2) {
             var newmenu = [
                 {
                     id: '媒体',
                 }
-            ]      
+            ]
             var newchmenu = [
                 {
                     id: '拍摄图片',
@@ -281,12 +291,12 @@ export default function Paperbase(props) {
                 { id: 'option y' },
             ]
         }
-        if (val === 3){
+        if (val === 3) {
             var newmenu = [
                 {
                     id: '设置',
                 }
-            ]      
+            ]
             var newchmenu = [
                 {
                     id: 'x',
@@ -316,19 +326,19 @@ export default function Paperbase(props) {
                             variant="temporary"
                             open={mobileOpen}
                             onClose={handleDrawerToggle}
-                            getselectedIndexValue = {getChildrensIValue}
+                            getselectedIndexValue={getChildrensIValue}
                         />
                     )}
 
                     <Navigator
                         PaperProps={{ style: { width: drawerWidth } }}
                         sx={{ display: { sm: 'block', xs: 'none' } }}
-                        getselectedIndexValue = {getChildrensIValue}
+                        getselectedIndexValue={getChildrensIValue}
                     />
                 </Box>
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <Header onDrawerToggle={handleDrawerToggle} menu={menu} chmenu={chmenu} hvalue={hvalue}
-                    getHeaderValue = {getHValue}/>
+                        getHeaderValue={getHValue} />
                     <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
                         {showContent()}
                     </Box>

@@ -14,6 +14,9 @@ import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { logout, getUserName } from '../model/mcookie';
+import axios from '_axios@0.24.0@axios';
+import { withRouter } from 'react-router';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -22,12 +25,35 @@ function Header(props) {
 
     const { onDrawerToggle, menu, chmenu, hvalue } = props;
     const [value, setValue] = React.useState(0);
-
+    const baseUrl = window.config.baseUrl;
+    const userName = getUserName();
+    
     const handleButtonClick = (event, index) => {
         setValue(index);
         props.getHeaderValue(index);
 
     };
+
+    const logOut = (event) => {
+
+        const _this = this;
+        let Url = baseUrl + '/User/Logout'
+
+        axios.post(Url, {
+        })
+            .then(function (response) {
+                console.log(response.data.Result);
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("登录失败")
+            })
+
+        logout(props);
+
+    }
+
+
 
     return (
         <React.Fragment>
@@ -45,6 +71,12 @@ function Header(props) {
                             </IconButton>
                         </Grid>
                         <Grid item xs />
+
+                        <Grid item>
+                            <IconButton color="inherit" sx={{ p: 0.5 }}>
+                                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+                            </IconButton>
+                        </Grid>
                         <Grid item>
                             <Link
                                 href="/"
@@ -59,21 +91,22 @@ function Header(props) {
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
-                                Go to docs
+                                User {userName}
                             </Link>
                         </Grid>
+                        
                         <Grid item>
-                            <Tooltip title="Alerts • No alerts">
-                                <IconButton color="inherit">
-                                    <NotificationsIcon />
-                                </IconButton>
-                            </Tooltip>
+                            <Button
+                                sx={{ borderColor: lightColor }}
+                                variant="outlined"
+                                color="inherit"
+                                size="small"
+                                onClick={(event) => { logOut(event) }}
+                            >
+                                Sign Out
+                            </Button>
                         </Grid>
-                        <Grid item>
-                            <IconButton color="inherit" sx={{ p: 0.5 }}>
-                                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-                            </IconButton>
-                        </Grid>
+                    
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -95,16 +128,7 @@ function Header(props) {
                             ))}
 
                         </Grid>
-                        <Grid item>
-                            <Button
-                                sx={{ borderColor: lightColor }}
-                                variant="outlined"
-                                color="inherit"
-                                size="small"
-                            >
-                                Web setup
-                            </Button>
-                        </Grid>
+
                         <Grid item>
                             <Tooltip title="Help">
                                 <IconButton color="inherit">
@@ -131,4 +155,4 @@ Header.propTypes = {
     onDrawerToggle: PropTypes.func.isRequired,
 };
 
-export default Header;
+export default withRouter(Header);
