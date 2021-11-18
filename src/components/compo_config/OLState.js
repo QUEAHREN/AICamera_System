@@ -17,10 +17,9 @@ class OLState extends React.Component{
             isOline:1,
             systemStatusTxt:'错误',
             baseUrl:window.config.baseUrl
-        }
-        
-    }
+        }  
 
+    }
 
     render(){
         return(
@@ -29,8 +28,10 @@ class OLState extends React.Component{
                 <Descriptions title="" bordered>               
                     <Descriptions.Item label="设备状态" span={3}>
                     <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
-                    </Descriptions.Item>                 
+                    </Descriptions.Item>       
+                              
                 </Descriptions>
+                
             </Layout>
         )
     }
@@ -46,6 +47,17 @@ class OLState extends React.Component{
             _this.setState({
                 isOline:response.data.Result,
             }); 
+            if (_this.state.isOline === 0){
+                _this.setState({
+                    systemStatus:'success',
+                    systemStatusTxt:'运行中'
+                });
+            }
+            else
+                _this.setState({
+                    systemStatus:'error',
+                    systemStatusTxt:'错误'
+                });
         })
         .catch(function (error) {
             console.log(error); 
@@ -54,17 +66,6 @@ class OLState extends React.Component{
             })
         })
 
-        if (_this.state.isOline === 0){
-            _this.setState({
-                systemStatus:'success',
-                systemStatusTxt:'运行中'
-            });
-        }
-        else
-            _this.setState({
-                systemStatus:'error',
-                systemStatusTxt:'错误'
-            });
 
 
     }

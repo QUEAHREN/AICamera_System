@@ -22,7 +22,7 @@ class Preview extends React.Component{
     componentDidMount(){
 
         const _this = this;
-        // checkToken(_this);
+        checkToken(_this);
         this.setState({
             Username:getUserName()
         })

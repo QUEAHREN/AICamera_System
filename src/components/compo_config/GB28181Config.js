@@ -83,7 +83,8 @@ class GB28181Config extends React.Component{
             <Layout>
                 <Descriptions
                 title="当前 GB28121 参数信息"
-                bordered
+                bordered="true"
+                size="small"
                 column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
                 >
                 <Descriptions.Item label="Server ID">{this.state.ServerID}</Descriptions.Item>
