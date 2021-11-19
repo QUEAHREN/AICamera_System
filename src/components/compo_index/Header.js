@@ -142,9 +142,10 @@ function Header(props) {
             <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
                 {/* 为了使每次切换navigator目录时能把header切换回首个选项，所以需要读取父组件的值 */}
                 <Tabs value={hvalue === 0 ? hvalue : value} textColor="inherit"
-                 onChange={(event, newvalue) => handleButtonClick(event, newvalue)} >
+                 onChange={(event, newvalue) => handleButtonClick(event, newvalue)}
+                 sx={{outline:0}} >
                     {chmenu.map(({ id, active }, index) => (
-                        <Tab label={id} selected={active} value={index} />
+                        <Tab label={id} selected={active}  />
                     ))}
                 </Tabs>
             </AppBar>

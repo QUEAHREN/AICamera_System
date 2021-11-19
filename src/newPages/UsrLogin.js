@@ -27,12 +27,14 @@ class UsrLogin extends React.Component {
 
         if (navigator.cookieEnabled === true) {
             console.log('已启用cookie');
+            
         }
         else {
             alert('请开启cookie');
         }
         if (checkToken2(this) === 1)
             this.props.history.push('/index');
+            
     }
 
     handleUseNameChange = (e) => {
@@ -57,7 +59,8 @@ class UsrLogin extends React.Component {
     }
 
     login = () => {
-
+        
+        console.log(1111)
         const _this = this;
         let Url = this.state.baseUrl + '/User/Login'
 
@@ -71,7 +74,9 @@ class UsrLogin extends React.Component {
                     Auth: response.data.Auth,
                     Token: response.data.Token,
                 });
+                
                 if (response.data.Result === 0) {
+                   
                     onLogin(response.data.Token, _this.state.Auth, _this.state.UserName)
                     _this.props.history.push('/Index')
                 }
@@ -83,49 +88,47 @@ class UsrLogin extends React.Component {
 
             })
             .catch(function (error) {
-                console.log(error);
                 alert("登录失败")
-                _this.props.history.push('/login')
             })
-
+            
     }
 
 
     render() {
         return (
             <div>
-                <section class="ftco-section">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-7 col-lg-5">
-                                <div class="login-wrap p-4 p-md-5">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <span class="fa fa-user-o"></span>
+                <section className="ftco-section">
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-md-7 col-lg-5">
+                                <div className="login-wrap p-4 p-md-5">
+                                    <div className="icon d-flex align-items-center justify-content-center">
+                                        <span className="fa fa-user-o"></span>
                                     </div>
-                                    <h3 class="text-center mb-4">Sign In</h3>
-                                    <form action="#" class="login-form">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control rounded-left" placeholder="Username" required
+                                    <h3 className="text-center mb-4">Sign In</h3>
+                                    <form action="#" className="login-form">
+                                        <div className="form-group">
+                                            <input type="text" className="form-control rounded-left" placeholder="Username" required
                                                 onChange={this.handleUseNameChange.bind(this)}
                                                 onKeyUp={this.keyUp} />
                                         </div>
-                                        <div class="form-group d-flex">
-                                            <input type="password" class="form-control rounded-left" placeholder="Password" required
+                                        <div className="form-group d-flex">
+                                            <input type="password" className="form-control rounded-left" placeholder="Password" required
                                                 onChange={this.handleUsePswChange.bind(this)}
                                                 onKeyUp={this.keyUp} />
                                         </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="form-control btn btn-primary rounded submit px-3"
+                                        <div className="form-group">
+                                            <button type="submit" className="form-control btn btn-primary rounded submit px-3"
                                                 onClick={this.login}>Login</button>
                                         </div>
-                                        <div class="form-group d-md-flex">
-                                            {/* <div class="w-50">
-                                                <label class="checkbox-wrap checkbox-primary">Remember Me
+                                        <div className="form-group d-md-flex">
+                                            {/* <div className="w-50">
+                                                <label className="checkbox-wrap checkbox-primary">Remember Me
                                                     <input type="checkbox" checked />
-                                                    <span class="checkmark"></span>
+                                                    <span className="checkmark"></span>
                                                 </label>
                                             </div>
-                                            <div class="w-50 text-md-right">
+                                            <div className="w-50 text-md-right">
                                                 <a href="#">Forgot Password</a>
                                             </div> */}
                                         </div>
