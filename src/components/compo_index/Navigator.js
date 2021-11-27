@@ -13,9 +13,15 @@ import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from '_axios@0.24.0@axios';
-import { onLogin,getToken, logout } from '../../model/mcookie';
+import { onLogin, getToken, logout } from '../../model/mcookie';
 import { createHashHistory } from "history";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 const categories = [
     {
@@ -58,6 +64,15 @@ export default function Navigator(props) {
 
     const { ...other } = props;
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleListItemClick = (event, index) => {
         console.log(index);
@@ -66,7 +81,7 @@ export default function Navigator(props) {
 
     };
 
-    const onReboot=()=>{
+    const onReboot = () => {
 
         const _this = this;
         let token = getToken();
@@ -78,22 +93,22 @@ export default function Navigator(props) {
             headers: {
                 'Token': token
             }
-          }).then(function (response) {
-            
-            console.log(response.data); 
-            if (response.data.Result === 1){
+        }).then(function (response) {
+
+            console.log(response.data);
+            if (response.data.Result === 1) {
                 alert(response.data.ErrMsg)
                 history.push(`/login`);
-            }else{
+            } else {
                 alert("系统重启成功，请重新登录。");
                 history.push(`/login`);
                 logout(props);
             }
         })
-        .catch(function (error) {
-            console.log(error); 
-            
-        })
+            .catch(function (error) {
+                console.log(error);
+
+            })
 
     }
 
@@ -133,11 +148,35 @@ export default function Navigator(props) {
                         <Divider sx={{ mt: 2 }} />
                     </Box>
                 ))}
-                <ListItem sx={{ ...item, ...itemCategory }} onClick={onReboot}>
+                <ListItem sx={{ ...item, ...itemCategory }}
+                    onClick={handleClickOpen}
+                // onClick={onReboot}
+                >
                     <ListItemIcon>
                         <AutorenewIcon />
                     </ListItemIcon>
                     <ListItemText>重启系统</ListItemText>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                            {"提示"}
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                是否确认重启系统？
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose}>取消</Button>
+                            <Button onClick={onReboot} autoFocus>
+                                确认重启
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 </ListItem>
             </List>
         </Drawer>

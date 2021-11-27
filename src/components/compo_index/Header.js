@@ -17,7 +17,11 @@ import Typography from '@mui/material/Typography';
 import { logout, getUserName } from '../../model/mcookie';
 import axios from '_axios@0.24.0@axios';
 import { withRouter } from 'react-router';
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
@@ -27,7 +31,8 @@ function Header(props) {
     const [value, setValue] = React.useState(0);
     const baseUrl = window.config.baseUrl;
     const userName = getUserName();
-    
+
+
     const handleButtonClick = (event, index) => {
         setValue(index);
         props.getHeaderValue(index);
@@ -94,7 +99,7 @@ function Header(props) {
                                 User {userName}
                             </Link>
                         </Grid>
-                        
+
                         <Grid item>
                             <Button
                                 sx={{ borderColor: lightColor }}
@@ -105,8 +110,10 @@ function Header(props) {
                             >
                                 Sign Out
                             </Button>
+
+                            
                         </Grid>
-                    
+
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -142,10 +149,10 @@ function Header(props) {
             <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
                 {/* 为了使每次切换navigator目录时能把header切换回首个选项，所以需要读取父组件的值 */}
                 <Tabs value={hvalue === 0 ? hvalue : value} textColor="inherit"
-                 onChange={(event, newvalue) => handleButtonClick(event, newvalue)}
-                 sx={{outline:0}} >
+                    onChange={(event, newvalue) => handleButtonClick(event, newvalue)}
+                    sx={{ outline: 0 }} >
                     {chmenu.map(({ id, active }, index) => (
-                        <Tab label={id} selected={active}  />
+                        <Tab label={id} selected={active} value={index} />
                     ))}
                 </Tabs>
             </AppBar>
