@@ -174,7 +174,7 @@ theme = {
 
 const drawerWidth = 256;
 
-export default function Paperbase(props) {
+export default function Index(props) {
 
 
     const initmenu = [

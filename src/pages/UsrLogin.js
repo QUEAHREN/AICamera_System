@@ -3,6 +3,8 @@ import axios from '_axios@0.24.0@axios';
 import '../assets/css/login.css'
 import { onLogin } from '../model/mcookie'
 import { checkToken2 } from '../model/mcookie';
+import { createHashHistory } from "history";
+const history = createHashHistory();
 
 class UsrLogin extends React.Component {
 
@@ -58,8 +60,10 @@ class UsrLogin extends React.Component {
         }
     }
 
-    login = () => {
+    handleClick = (e) => {
         
+        //防止重复刷新
+        e.preventDefault()
         console.log(1111)
         const _this = this;
         let Url = this.state.baseUrl + '/User/Login'
@@ -78,9 +82,9 @@ class UsrLogin extends React.Component {
                 if (response.data.Result === 0) {
                    
                     onLogin(response.data.Token, _this.state.Auth, _this.state.UserName)
-                    _this.props.history.push('/Index')
+                    history.push('/Index')
                 }
-                else if (_this.state.Result === 1){
+                else if (_this.state.Result === 1){          
                     alert("登录失败")
                     
                 }
@@ -88,6 +92,8 @@ class UsrLogin extends React.Component {
 
             })
             .catch(function (error) {
+
+                // history.push('/Index')
                 alert("登录失败")
             })
             
@@ -119,7 +125,7 @@ class UsrLogin extends React.Component {
                                         </div>
                                         <div className="form-group">
                                             <button type="submit" className="form-control btn btn-primary rounded submit px-3"
-                                                onClick={this.login}>Login</button>
+                                                onClick={this.handleClick}>Login</button>
                                         </div>
                                         <div className="form-group d-md-flex">
                                             {/* <div className="w-50">

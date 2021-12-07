@@ -1,10 +1,10 @@
 
-import UsrLogin from '../newPages/UsrLogin';
+import UsrLogin from '../pages/UsrLogin';
 
 import React from 'react';
 import {Router,Route,Switch,Redirect} from 'react-router-dom';
 import { createHashHistory } from "history";
-import Paperbase from '../newPages/Paperbase';
+import Index from '../pages/Index';
 const history = createHashHistory();
 
 class RouterConfig extends React.Component{
@@ -16,7 +16,7 @@ class RouterConfig extends React.Component{
                         <Redirect to='/Login'/>
                     )}/>
                     <Route path='/Login' component={UsrLogin}/>
-                    <Route path='/Index' component={Paperbase}/>
+                    <Route path='/Index' component={Index}/>
                  
 
                 </Switch>
