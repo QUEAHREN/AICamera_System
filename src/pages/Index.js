@@ -209,10 +209,6 @@ export default function Index(props) {
         }, inputs);
     }
 
-    useDidUpdateEffect(() => {
-        checkToken(props);
-    }, [chmenu, menu]);
-
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -221,6 +217,11 @@ export default function Index(props) {
     const [sIValue, setsIValue] = React.useState(0);
     // Header中的菜单值
     const [hvalue, setHvalue] = React.useState(0);
+
+    useDidUpdateEffect(() => {
+        //checkToken(props);
+    }, [hvalue, sIValue]);
+
 
     function showContent() {
         if (sIValue === 0) {

@@ -66,7 +66,9 @@ export default function Navigator(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [open, setOpen] = React.useState(false);
 
+    //调整open来控制弹窗是否显示
     const handleClickOpen = () => {
+        console.log(open);
         setOpen(true);
     };
 
@@ -74,22 +76,28 @@ export default function Navigator(props) {
         setOpen(false);
     };
 
+    const handleCancel= () => {
+        setOpen(false);
+    };
+
+    //向父组件传参
     const handleListItemClick = (event, index) => {
         console.log(index);
         setSelectedIndex(index);
         props.getselectedIndexValue(index);
-
     };
 
+    //处理重启事件
     const onReboot = () => {
 
         const _this = this;
         let token = getToken();
+        let Url = window.config.baseUrl + '/System/Reboot'
 
         axios.defaults.withCredentials = true;
         axios({
             method: 'post',
-            url: 'http://192.168.1.215:8080/System/Reboot',
+            url: Url,
             headers: {
                 'Token': token
             }
@@ -107,7 +115,6 @@ export default function Navigator(props) {
         })
             .catch(function (error) {
                 console.log(error);
-
             })
 
     }
@@ -148,14 +155,12 @@ export default function Navigator(props) {
                         <Divider sx={{ mt: 2 }} />
                     </Box>
                 ))}
-                <ListItem sx={{ ...item, ...itemCategory }}
-                    onClick={handleClickOpen}
-                // onClick={onReboot}
-                >
-                    <ListItemIcon>
+                {/* handleClickOpen不要加在ListItem，不然没用 */}
+                <ListItem sx={{ ...item, ...itemCategory }}>
+                    <ListItemIcon onClick={handleClickOpen}>
                         <AutorenewIcon />
                     </ListItemIcon>
-                    <ListItemText>重启系统</ListItemText>
+                    <ListItemText onClick={handleClickOpen}>重启系统</ListItemText>
                     <Dialog
                         open={open}
                         onClose={handleClose}
@@ -167,16 +172,17 @@ export default function Navigator(props) {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                                是否确认重启系统？
+                                是否确认重启系统？这将使您调整的设置生效。                
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose}>取消</Button>
-                            <Button onClick={onReboot} autoFocus>
+                            <Button onClick={handleClose} autoFocus style={{outline:'none'}}>取消</Button>
+                            <Button onClick={onReboot}  style={{outline:'none'}}>
                                 确认重启
                             </Button>
                         </DialogActions>
                     </Dialog>
+                    
                 </ListItem>
             </List>
         </Drawer>

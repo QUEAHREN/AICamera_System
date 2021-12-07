@@ -29,36 +29,6 @@ class OLState extends React.Component{
 
     }
 
-    render(){
-        return(
-
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 ,
-                '.cell':{
-                    fontWeight:"bold"
-                }}} aria-label="simple table">
-
-                    <TableBody >
-
-                        <TableRow>
-                            <TableCell className="cell">设备状态</TableCell>
-                            <TableCell><Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} /></TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            // <Layout>
-            //     <Descriptions title="" bordered>               
-            //         <Descriptions.Item label="设备状态" span={3} >
-            //         <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
-            //         </Descriptions.Item>       
-                              
-            //     </Descriptions>
-                
-            // </Layout>
-        )
-    }
-    
     componentDidMount(){
         
         let Url = this.state.baseUrl + '/System/Info/OnlineState'
@@ -89,9 +59,39 @@ class OLState extends React.Component{
             })
         })
 
-
-
     }
+    
+    render(){
+        return(
+
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 ,
+                '.cell':{
+                    fontWeight:"bold"
+                }}} aria-label="simple table">
+
+                    <TableBody >
+
+                        <TableRow>
+                            <TableCell className="cell">设备状态</TableCell>
+                            <TableCell><Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} /></TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            // <Layout>
+            //     <Descriptions title="" bordered>               
+            //         <Descriptions.Item label="设备状态" span={3} >
+            //         <Badge status={this.state.systemStatus} text={this.state.systemStatusTxt} />
+            //         </Descriptions.Item>       
+                              
+            //     </Descriptions>
+                
+            // </Layout>
+        )
+    }
+    
+ 
 
 }
 

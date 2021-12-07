@@ -54,11 +54,12 @@ class Reboot extends React.Component{
     onSoftReboot=()=>{
 
         const token = getToken();
-
+        let Url = this.state.baseUrl + '/System/SoftReboot'
+        
         axios.defaults.withCredentials = true;
         axios({
             method: 'post',
-            url: 'http://192.168.1.215:8080/System/SoftReboot',
+            url: Url,
             headers: {
                 'Token': token
             }

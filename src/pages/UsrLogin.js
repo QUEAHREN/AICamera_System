@@ -8,11 +8,8 @@ const history = createHashHistory();
 
 class UsrLogin extends React.Component {
 
-
     constructor(props) {
-
         super(props);
-
         this.state = {
 
             UserName: "",
@@ -29,29 +26,26 @@ class UsrLogin extends React.Component {
 
         if (navigator.cookieEnabled === true) {
             console.log('已启用cookie');
-            
         }
         else {
             alert('请开启cookie');
         }
         if (checkToken2(this) === 1)
             this.props.history.push('/index');
-            
+
+
     }
 
     handleUseNameChange = (e) => {
-
         this.setState({
             UserName: e.target.value
         })
     }
 
     handleUsePswChange = (e) => {
-
         this.setState({
             Password: e.target.value
         })
-
     }
 
     keyUp = (e) => {
@@ -61,7 +55,7 @@ class UsrLogin extends React.Component {
     }
 
     handleClick = (e) => {
-        
+
         //防止重复刷新
         e.preventDefault()
         console.log(1111)
@@ -78,17 +72,14 @@ class UsrLogin extends React.Component {
                     Auth: response.data.Auth,
                     Token: response.data.Token,
                 });
-                
+
                 if (response.data.Result === 0) {
-                   
                     onLogin(response.data.Token, _this.state.Auth, _this.state.UserName)
                     history.push('/Index')
                 }
-                else if (_this.state.Result === 1){          
+                else if (_this.state.Result === 1) {
                     alert("登录失败")
-                    
                 }
-
 
             })
             .catch(function (error) {
@@ -96,7 +87,7 @@ class UsrLogin extends React.Component {
                 // history.push('/Index')
                 alert("登录失败")
             })
-            
+
     }
 
 

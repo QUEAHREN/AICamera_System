@@ -138,6 +138,7 @@ class GB28181Config extends React.Component{
                             <TableCell>{this.state.UserPassword}</TableCell>
                             <TableCell className="cell">用户密码</TableCell>
                             <TableCell>{this.state.UserPassword}</TableCell>
+                            
                         </TableRow>
                         <TableRow>
                             <TableCell className="cell">报警ID</TableCell>

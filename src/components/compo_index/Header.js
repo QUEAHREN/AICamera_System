@@ -17,11 +17,6 @@ import Typography from '@mui/material/Typography';
 import { logout, getUserName } from '../../model/mcookie';
 import axios from '_axios@0.24.0@axios';
 import { withRouter } from 'react-router';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
@@ -33,13 +28,15 @@ function Header(props) {
     const userName = getUserName();
 
 
+    //向父组件传参
     const handleButtonClick = (event, index) => {
         setValue(index);
         props.getHeaderValue(index);
 
     };
 
-    const logOut = (event) => {
+    //注销
+    const handleLogOut = (event) => {
 
         const _this = this;
         let Url = baseUrl + '/User/Logout'
@@ -71,6 +68,7 @@ function Header(props) {
                                 aria-label="open drawer"
                                 onClick={onDrawerToggle}
                                 edge="start"
+                                style={{outline:'none'}}
                             >
                                 <MenuIcon />
                             </IconButton>
@@ -78,7 +76,7 @@ function Header(props) {
                         <Grid item xs />
 
                         <Grid item>
-                            <IconButton color="inherit" sx={{ p: 0.5 }}>
+                            <IconButton color="inherit" sx={{ p: 0.5 }} style={{outline:'none'}}>
                                 <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
                             </IconButton>
                         </Grid>
@@ -106,7 +104,8 @@ function Header(props) {
                                 variant="outlined"
                                 color="inherit"
                                 size="small"
-                                onClick={(event) => { logOut(event) }}
+                                onClick={(event) => { handleLogOut(event) }}
+                                style={{outline:'none'}}
                             >
                                 Sign Out
                             </Button>
@@ -152,7 +151,7 @@ function Header(props) {
                     onChange={(event, newvalue) => handleButtonClick(event, newvalue)}
                     sx={{ outline: 0 }} >
                     {chmenu.map(({ id, active }, index) => (
-                        <Tab label={id} selected={active} value={index} />
+                        <Tab label={id} selected={active} value={index} style={{outline:'none'}}/>
                     ))}
                 </Tabs>
             </AppBar>
