@@ -13,33 +13,33 @@ import 'moment/locale/zh-cn';
 import { DatePicker, Space } from 'antd';
 import { Paper } from '@mui/material';
 import { createHashHistory } from "history";
+import { Switch, Button } from 'antd';
 const history = createHashHistory();
 
-export default function SystemTime() {
-
-    const [localTime, setLocalTime] = React.useState(new Date());
-    const [systemTime, setSystemTime] = React.useState('');
-
-    React.useLayoutEffect(() => {
-        getSystemTime()
-    })
+class SystemTime extends React.Component {
 
 
-    // useEffect(() => {
-    //     const t = setInterval(() => {
-    //         setLocalTime(new Date())
 
-    //     }, 1000)
-    //     return () => {
-    //         clearTimeout(t)
-    //     }
-    // }, [])
+    constructor(props) {
 
+        super(props);
 
-    const getSystemTime = () => {
+        this.state = {
+            localTime: new Date(),
+            systemTime: '',
+            baseUrl: window.config.baseUrl,
+            newTime: new Date(),
+            open: true
+
+        }
+
+    }
+
+    componentWillMount() {
 
         let Url = window.config.baseUrl + '/System/Time'
         let token = getToken()
+        const _this = this;
 
         axios.defaults.withCredentials = true;
         axios.get(Url, {
@@ -48,8 +48,10 @@ export default function SystemTime() {
             }
         })
             .then(function (response) {
-                setSystemTime(response.data.Time)
 
+                _this.setState({
+                    systemTime: response.data.Time
+                })
                 if (response.data.Result === 1) {
                     alert(response.data.ErrMsg)
                     deleteCookies();
@@ -59,54 +61,123 @@ export default function SystemTime() {
             .catch(function (error) {
                 console.log(error);
             })
+
+        this.timer = setInterval(() => {
+            this.setState({
+                localTime: new Date()
+            })
+        }, 1000);
     }
 
-   
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
 
-    function onChange(value, dateString) {
+    onChange(value, dateString) {
         console.log('Selected Time: ', value);
         console.log('Formatted Selected Time: ', dateString);
     }
 
-    function onOk(value) {
-        console.log('onOk: ', value);
+
+
+    onSwitchChange = (checked) => {
+
+        this.setState({
+            open: false
+        })
+        if (checked === true) {
+            this.setState({
+                localTime: new Date(),
+                open: true
+            })
+            this.timer = setInterval(() => {
+                this.setState({//  this.setState固定 更改state中的data值
+                    localTime: new Date(),
+                    newTime: new Date()
+                })
+            }, 1000);
+        }
+        else {
+            clearInterval(this.timer);
+            this.setState({
+                open: false
+            })
+        }
     }
-    return (
 
-        <div>
-            <TableContainer component={Paper}>
-                <Table sx={{
-                    minWidth: 650,
-                    '.cell': {
-                        fontWeight: "bold"
-                    }
-                }} aria-label="simple table">
-
-                    <TableBody >
-
-                        <TableRow>
-                            <TableCell className="cell">系统时间</TableCell>
-                            <TableCell>{systemTime} </TableCell>
-                        </TableRow>
-
-                    </TableBody>
-
-                </Table>
-
-            </TableContainer>
-            <Space direction="vertical" size={12}>
-                <DatePicker disabled 
-                defaultValue={moment(systemTime ,moment.ISO_8601)} 
-                size='large' showTime  />
-                <DatePicker 
-                defaultValue={moment(localTime ,moment.ISO_8601)} 
-                size='large' showTime  />
-            </Space>
-        </div>
-    )
+    onOk = (value) => {
+        this.setState({
+            newTime: value
+        })
+        console.log(this.state.newTime)
+    }
 
 
+    handleSubmit = () => {
+
+        let Url = window.config.baseUrl + '/System/Time'
+        let token = getToken()
+        const _this = this;
+
+        let time = moment(_this.state.newTime).utc().toISOString()
+        time = time.substring(0, 19)
+        console.log(time)
+        axios.defaults.withCredentials = true;
+        axios.put(Url,
+            {           
+                'Time': time   
+            },
+            {
+                headers: {
+                    'Token': token
+                }
+            })
+            .then(function (response) {
+
+                console.log(response.data)
+                if (response.data.Result === 1) {
+                    alert(response.data.ErrMsg)
+                }
+                else {
+                    alert("修改成功，系统重启！")
+                }
+                deleteCookies();  
+                history.push(`/login`);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+    }
+
+    render() {
+        return (
+
+            <div>
+
+                <Space direction="vertical" size={12}>
+                    <Space size={12}>
+
+                        <DatePicker disabled
+                            value={moment(this.state.systemTime, moment.ISO_8601)}
+                            size='large' showTime />
+                    </Space>
+                    <DatePicker
+                        disabled={this.state.open}
+                        value={moment(this.state.localTime, moment.ISO_8601)}
+                        size='large' showTime
+                        onChange={this.onChange}
+                        onOk={this.onOk} />
+                    <Switch defaultChecked onChange={this.onSwitchChange} />
+                    <Button type="primary" onClick={this.handleSubmit}>提交</Button>
+                </Space>
+            </div>
+        )
+
+    }
 
 
 }
 
+export default SystemTime
