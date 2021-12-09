@@ -12,7 +12,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import axios from '_axios@0.24.0@axios';
+import axios from 'axios';
 import { onLogin, getToken, logout } from '../../model/mcookie';
 import { createHashHistory } from "history";
 import AutorenewIcon from '@mui/icons-material/Autorenew';

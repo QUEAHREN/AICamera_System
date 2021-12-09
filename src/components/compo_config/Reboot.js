@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import { Button } from 'antd';
-import axios from '_axios@0.24.0@axios';
+import axios from 'axios';
 import {deleteCookies, getToken, logout} from '../../model/mcookie';
 import { createHashHistory } from "history";
 const history = createHashHistory();

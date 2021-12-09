@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '_axios@0.24.0@axios';
+import axios from 'axios';
 import '../assets/css/login.css'
 import { onLogin } from '../model/mcookie'
 import { checkToken2 } from '../model/mcookie';

@@ -15,7 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { logout, getUserName } from '../../model/mcookie';
-import axios from '_axios@0.24.0@axios';
+import axios from 'axios';
 import { withRouter } from 'react-router';
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
