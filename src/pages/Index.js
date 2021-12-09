@@ -16,7 +16,7 @@ import PortInfo from '../components/compo_config/PortInfo';
 import GB28181Config from '../components/compo_config/GB28181Config';
 import { checkToken } from '../model/mcookie';
 import { useRef, useEffect } from 'react';
-
+import SystemTime from '../components/compo_config/SystemTime';
 function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center">
@@ -189,6 +189,7 @@ export default function Index(props) {
             active: true,
         },
         { id: '设备相关信息' },
+        { id: '系统时间' },
         { id: '上传固件' },
         { id: '重启及其他操作' }
 
@@ -219,7 +220,7 @@ export default function Index(props) {
     const [hvalue, setHvalue] = React.useState(0);
 
     useDidUpdateEffect(() => {
-        //checkToken(props);
+        checkToken(props);
     }, [hvalue, sIValue]);
 
 
@@ -227,8 +228,9 @@ export default function Index(props) {
         if (sIValue === 0) {
             if (hvalue === 0) return (<OLState />);
             if (hvalue === 1) return (<DeviceInfo />);
-            if (hvalue === 2) return (<FirmwareUpload />);
-            if (hvalue === 3) return (<Reboot />);
+            if (hvalue === 2) return (<SystemTime />);
+            if (hvalue === 3) return (<FirmwareUpload />);
+            if (hvalue === 4) return (<Reboot />);
         }
         if (sIValue === 1) {
             if (hvalue === 0) return (<LANConfig />);
@@ -257,6 +259,7 @@ export default function Index(props) {
                     active: true,
                 },
                 { id: '设备相关信息' },
+                { id: '系统时间' },
                 { id: '上传固件' },
                 { id: '重启及其他操作' }
             ]
