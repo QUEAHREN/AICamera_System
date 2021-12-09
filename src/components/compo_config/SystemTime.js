@@ -14,6 +14,7 @@ import { DatePicker, Space } from 'antd';
 import { Paper } from '@mui/material';
 import { createHashHistory } from "history";
 import { Switch, Button } from 'antd';
+
 const history = createHashHistory();
 
 class SystemTime extends React.Component {
@@ -165,7 +166,10 @@ class SystemTime extends React.Component {
                     </Space>
                     <DatePicker
                         disabled={this.state.open}
+                        // 需要修改三目
                         value={moment(this.state.localTime, moment.ISO_8601)}
+
+                        // value={this.state.open===1?moment(this.state.localTime, moment.ISO_8601):}
                         size='large' showTime
                         onChange={this.onChange}
                         onOk={this.onOk} />
